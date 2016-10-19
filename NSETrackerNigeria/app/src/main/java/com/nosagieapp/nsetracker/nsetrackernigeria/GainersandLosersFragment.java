@@ -19,6 +19,13 @@ public class GainersandLosersFragment extends Fragment {
 
     TextView test;
 
+    //JSON KEYS
+    private final String SYMBOL_KEY = "SYMBOL";
+    private final String LAST_CLOSE_KEY = "LAST_CLOSE";
+    private final String TODAYS_CLOSE_KEY = "TODAYS_CLOSE";
+    private final String PERCENTAGE_CHANGE_KEY = "PERCENTAGE_CHANGE";
+    private final String SYMBOL2_KEY = "SYMBOL2"; //same as symbol but returned with api call
+
 
     public GainersandLosersFragment() {
         // Required empty public constructor
