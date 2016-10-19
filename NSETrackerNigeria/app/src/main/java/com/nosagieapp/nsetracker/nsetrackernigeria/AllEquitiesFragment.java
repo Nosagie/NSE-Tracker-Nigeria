@@ -16,6 +16,22 @@ public class AllEquitiesFragment extends Fragment {
     private TextView test;
 
 
+    //Keys for JSON API Call
+    private final String SYMBOL_KEY = "Symbol";
+    private final String Prev_Closing_Price_KEY = "PrevClosingPrice";
+    private final String Opening_Price_KEY = "OpeningPrice";
+    private final String High_Price_KEY = "HighPrice";
+    private final String Low_Price_KEY = "LowPrice";
+    private final String Close_Price_KEY = "ClosePrice";
+    private final String Change_KEY = "Change";
+    private final String Perc_Change_KEY = "PercChange";
+    private final String Trades_KEY = "Trades";
+    private final String Volume_KEY = "Volume";
+    private final String Value_KEY = "Value";
+    private final String Market_KEY = "Market";
+    private final String Sector_KEY = "Sector";
+    private final String Company2_KEY = "Company2"; //same as symbol but returned with API call
+
     public AllEquitiesFragment() {
         // Required empty public constructor
     }
