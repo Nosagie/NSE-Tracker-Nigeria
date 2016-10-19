@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="colorScheme">
+        <item name="android:background">#003300</item>
+    </style>
+
+    <style name="mainActivityButton" parent="Theme.AppCompat.Light">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_weight">25</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:textColor">#FFFF</item>
+        <item name="android:background">#003300</item>
+    </style>
+
+</resources>
