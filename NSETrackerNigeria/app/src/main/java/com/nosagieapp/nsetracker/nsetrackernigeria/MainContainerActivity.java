@@ -63,7 +63,7 @@ public class MainContainerActivity extends AppCompatActivity {
         mCompanyDirectoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setFragment(new CompanyDirectoryFragment());
             }
         });
 
