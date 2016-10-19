@@ -38,6 +38,24 @@ public class Fetcher {
         //Build Uri with queries
         Uri builtUri = Uri.parse(NSE_BASE_URL)
                 .buildUpon()
+                .appendPath("mrkstat")
+                .appendPath("mrksnapshot")
+                .build();
+
+        try {
+            apiAddress = new URL(builtUri.toString());
+        }catch (MalformedURLException e){
+            //Exception already caught in getRawStringMethod()
+        }
+
+        return getRawString(apiAddress);
+
+    }
+
+    public static String fetchAllEquities(){
+        //Build Uri with queries
+        Uri builtUri = Uri.parse(NSE_BASE_URL)
+                .buildUpon()
                 .appendPath("statistics")
                 .appendPath("equities")
                 .appendQueryParameter("market","")

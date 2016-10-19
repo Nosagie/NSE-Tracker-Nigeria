@@ -13,52 +13,42 @@ import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the factory method to
- * create an instance of this fragment.
  */
-public class MarketSnapshotFragment extends Fragment {
+public class CompanyDirectoryFragment extends Fragment {
 
     TextView test;
 
-    //JSON Keys
-    private final String ASI_KEY = "ASI";
-    private final String DEALS_KEY = "DEALS";
-    private final String VOLUME_KEY = "VOLUME";
-    private final String VALUE_KEY = "VALUE";
-    private final String MARKET_CAP_KEY = "CAP";
-
-
-    public MarketSnapshotFragment() {
+    public CompanyDirectoryFragment() {
         // Required empty public constructor
     }
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new fetchMarketSnapshot().execute();
-
+        new fetchCompanyDirectory().execute();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_market_snapshot, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_company_directory, container, false);
 
-        test = (TextView)rootView.findViewById(R.id.mrktsnaptextviewtest);
+        test = (TextView)rootView.findViewById(R.id.companyDireTextViewtest);
         test.setMovementMethod(new ScrollingMovementMethod());
 
         return rootView;
     }
 
-    private class fetchMarketSnapshot extends AsyncTask<String,Void,String>{
+    private class fetchCompanyDirectory extends AsyncTask<String,Void,String>{
         @Override
         protected String doInBackground(String... params) {
-            String unparsedJSON = Fetcher.fetchMarketSnapshot();
+            String unparsedJSON = Fetcher.fetchCompanyDirectory();
 
-            return unparsedJSON.substring(4); //removes "null" at the beginning of resulting string
+            return unparsedJSON.substring(4);//removes "null" at beginning of string
         }
 
         @Override

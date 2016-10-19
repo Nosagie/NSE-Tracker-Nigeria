@@ -2,47 +2,31 @@ package com.nosagieapp.nsetracker.nsetrackernigeria;
 
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link GainersandLosersFragment#newInstance} factory method to
- * create an instance of this fragment.
  *
  */
 public class GainersandLosersFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    TextView test;
+
+    //JSON KEYS
+    private final String SYMBOL_KEY = "SYMBOL";
+    private final String LAST_CLOSE_KEY = "LAST_CLOSE";
+    private final String TODAYS_CLOSE_KEY = "TODAYS_CLOSE";
+    private final String PERCENTAGE_CHANGE_KEY = "PERCENTAGE_CHANGE";
+    private final String SYMBOL2_KEY = "SYMBOL2"; //same as symbol but returned with api call
 
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GainersandLosersFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static GainersandLosersFragment newInstance(String param1, String param2) {
-        GainersandLosersFragment fragment = new GainersandLosersFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
     public GainersandLosersFragment() {
         // Required empty public constructor
     }
@@ -50,17 +34,40 @@ public class GainersandLosersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        new fetchGainersandLosersTask().execute();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gainersand_losers, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_gainersand_losers, container, false);
+
+        test = (TextView)rootView.findViewById(R.id.gainersloserstestTextView);
+        test.setMovementMethod(new ScrollingMovementMethod());
+
+        return rootView;
+    }
+
+    private class fetchGainersandLosersTask extends AsyncTask<String, Void,String[]>{
+        @Override
+        protected String[] doInBackground(String... params) {
+            String[] unparsedJSON = Fetcher.fetchGainersandLosers();
+
+            return unparsedJSON;
+        }
+
+        @Override
+        protected void onPostExecute(String[] results) {
+            super.onPostExecute(results);
+
+            String gainers = results[0].substring(4);
+            String losers = results[1].substring(4);
+
+            test.setText(gainers + "\n\n" + losers);
+
+        }
     }
 
 }
