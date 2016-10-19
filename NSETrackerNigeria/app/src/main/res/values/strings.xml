@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NSE Tracker Nigeria</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--Buttons-->
+    <string name="marketSnapshotButtonLabel">SNAPSHOT</string>
+    <string name="gainersandLosersLabel">GAINERS LOSERS</string>
+    <string name="viewAllEquitiesLabel">EQUITIES</string>
+    <string name="companyDirectoryLabel">DIRECTORY</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+
+</resources>
