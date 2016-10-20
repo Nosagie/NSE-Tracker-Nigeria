@@ -1,5 +1,6 @@
 package com.nosagieapp.nsetracker.nsetrackernigeria;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,11 +12,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainContainerActivity extends AppCompatActivity {
 
     public static final String DEVELOPER_EMAIL = "nosagie.a@gmail.com";
     public static final String LOG_TAG = "Fetcher.nsetracker";
+    public static final String API_CALL_ERROR_STRING = "NSE site is down, retry later";
+    public static final String PARSE_ERROR_STRING = "Error Reading Data, contact developer ";
+
+    private static final String ACTION_BAR_COLOR = "#003300";
 
     //Buttons
     private Button mMarketSnapshotButton, mGainersandLosersButton, mAllEquitiesButton,mCompanyDirectoryButton;
@@ -25,8 +31,10 @@ public class MainContainerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_container);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003300")));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(ACTION_BAR_COLOR)));
         setSupportActionBar(toolbar);
+
+        //TODO:Check if WIFI is On/Connected
 
          // Add the fragment to the 'fragment_container' FrameLayout
          getSupportFragmentManager().beginTransaction()
@@ -96,5 +104,10 @@ public class MainContainerActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Helper Method to display Toast Error to user
+    public static void displayAPiCallErrorToast(Context c){
+        Toast.makeText(c,"NSE site is down, please retry",Toast.LENGTH_SHORT);
     }
 }

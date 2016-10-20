@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.AllEquities">
 
-    <!-- TODO: Update blank fragment layout -->
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,6 +16,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/alleqTextViewtest"/>
+        android:id="@+id/allEquitiesErrorTextView"/>
 
 </FrameLayout>

@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.CompanyDirectoryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
 
         <ProgressBar
             android:layout_width="wrap_content"
@@ -20,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/companyDireTextViewtest"
+        android:id="@+id/companyDirectoryErrorTextView"
         />
     
 

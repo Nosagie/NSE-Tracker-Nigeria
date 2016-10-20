@@ -5,11 +5,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -19,7 +23,7 @@ import android.widget.TextView;
  */
 public class MarketSnapshotFragment extends Fragment {
 
-    private static TextView test;
+    private static TextView marketSnapshotErrorTextView;
 
     private static ProgressBar progressBar;
 
@@ -52,8 +56,8 @@ public class MarketSnapshotFragment extends Fragment {
 
         progressBar = (ProgressBar)rootView.findViewById(R.id.mrktSnapshotProgressBar);
 
-        test = (TextView)rootView.findViewById(R.id.mrktsnaptextviewtest);
-        test.setMovementMethod(new ScrollingMovementMethod());
+        marketSnapshotErrorTextView = (TextView)rootView.findViewById(R.id.mrktSnapshotErrorTextView);
+        marketSnapshotErrorTextView.setMovementMethod(new ScrollingMovementMethod());
 
         return rootView;
     }
@@ -71,7 +75,35 @@ public class MarketSnapshotFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             progressBar.setVisibility(View.GONE);
-            test.setText(s);
+            //checks if returned string is null, if yes - display error to user
+            if (s == null || s.equals("null")){
+                //Show Error to User
+                marketSnapshotErrorTextView.setText(MainContainerActivity.API_CALL_ERROR_STRING);
+
+            }else{ //else update UI Thread with Parsed JSON Data
+
+                //Make Progress Bar and Error TextView Disappear and Make other UI Elements Visible
+                //marketSnapshotErrorTextView.setVisibility(View.GONE);
+
+                try {
+                    //Parse JSON
+                    JSONObject unparsedSnapshot = new JSONObject(s);
+                    Double allShareIndex = unparsedSnapshot.getDouble(ASI_KEY);
+                    Integer deals = unparsedSnapshot.getInt(DEALS_KEY);
+                    Long volume = unparsedSnapshot.getLong(VOLUME_KEY);
+                    Long value = unparsedSnapshot.getLong(VALUE_KEY);
+                    Long marketCap = unparsedSnapshot.getLong(MARKET_CAP_KEY);
+
+                    //TODO:UPDATE UI ELEMENTS
+                    marketSnapshotErrorTextView.setText(allShareIndex + "\n" + deals + "\n" + volume + "\n" + value + "\n" + marketCap);
+
+
+                }catch (JSONException e){
+                    Log.e(MainContainerActivity.LOG_TAG,MainContainerActivity.PARSE_ERROR_STRING + MainContainerActivity.DEVELOPER_EMAIL);
+                    marketSnapshotErrorTextView.setText(MainContainerActivity.PARSE_ERROR_STRING);
+                }
+            }
+
         }
     }
 
