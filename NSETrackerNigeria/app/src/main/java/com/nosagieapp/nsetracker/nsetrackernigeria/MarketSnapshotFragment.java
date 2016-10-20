@@ -53,12 +53,19 @@ public class MarketSnapshotFragment extends Fragment {
         return rootView;
     }
 
-    private class fetchMarketSnapshot extends AsyncTask<String,Void,String>{
+    private class fetchMarketSnapshot extends AsyncTask<String,Integer,String>{
         @Override
         protected String doInBackground(String... params) {
             String unparsedJSON = Fetcher.fetchMarketSnapshot();
 
             return unparsedJSON.substring(4); //removes "null" at the beginning of resulting string
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+
+            test.setText(values[0]);
         }
 
         @Override

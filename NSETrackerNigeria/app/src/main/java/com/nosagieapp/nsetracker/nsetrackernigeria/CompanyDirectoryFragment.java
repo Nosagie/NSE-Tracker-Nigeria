@@ -43,12 +43,23 @@ public class CompanyDirectoryFragment extends Fragment {
         return rootView;
     }
 
-    private class fetchCompanyDirectory extends AsyncTask<String,Void,String>{
+    private class fetchCompanyDirectory extends AsyncTask<String,Integer,String>{
         @Override
         protected String doInBackground(String... params) {
+
+            publishProgress(50);
+
             String unparsedJSON = Fetcher.fetchCompanyDirectory();
 
+            publishProgress(100);
+
             return unparsedJSON.substring(4);//removes "null" at beginning of string
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            test.setText(values[0].toString());
         }
 
         @Override
