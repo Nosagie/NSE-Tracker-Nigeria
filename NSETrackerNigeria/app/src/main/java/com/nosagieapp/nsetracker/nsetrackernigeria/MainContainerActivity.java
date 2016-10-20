@@ -1,5 +1,6 @@
 package com.nosagieapp.nsetracker.nsetrackernigeria;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,11 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainContainerActivity extends AppCompatActivity {
 
     public static final String DEVELOPER_EMAIL = "nosagie.a@gmail.com";
     public static final String LOG_TAG = "Fetcher.nsetracker";
+    public static final String API_CALL_ERROR_STRING = "NSE site is down, retry later";
 
     //Buttons
     private Button mMarketSnapshotButton, mGainersandLosersButton, mAllEquitiesButton,mCompanyDirectoryButton;
@@ -96,5 +99,10 @@ public class MainContainerActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Helper Method to display Toast Error to user
+    public static void displayAPiCallErrorToast(Context c){
+        Toast.makeText(c,"NSE site is down, retrying data call",Toast.LENGTH_SHORT);
     }
 }

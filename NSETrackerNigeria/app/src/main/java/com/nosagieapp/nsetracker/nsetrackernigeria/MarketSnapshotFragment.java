@@ -19,7 +19,7 @@ import android.widget.TextView;
  */
 public class MarketSnapshotFragment extends Fragment {
 
-    private static TextView test;
+    private static TextView errorTextView;
 
     private static ProgressBar progressBar;
 
@@ -52,8 +52,8 @@ public class MarketSnapshotFragment extends Fragment {
 
         progressBar = (ProgressBar)rootView.findViewById(R.id.mrktSnapshotProgressBar);
 
-        test = (TextView)rootView.findViewById(R.id.mrktsnaptextviewtest);
-        test.setMovementMethod(new ScrollingMovementMethod());
+        errorTextView = (TextView)rootView.findViewById(R.id.mrktSnapshotErrorTextView);
+        errorTextView.setMovementMethod(new ScrollingMovementMethod());
 
         return rootView;
     }
@@ -70,8 +70,22 @@ public class MarketSnapshotFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            progressBar.setVisibility(View.GONE);
-            test.setText(s);
+
+            //checks if returned string is null, if yes - display error toast to user
+            if (s == null || s.equals("null")){
+                //Use Helper method
+                errorTextView.setText(MainContainerActivity.API_CALL_ERROR_STRING);
+                MainContainerActivity.displayAPiCallErrorToast(getActivity());
+
+            }else{ //else update UI Thread with Parsed JSON Data
+
+                //Make Progress Bar and Error TextView Disappear and Make other UI Elements Visible
+                progressBar.setVisibility(View.GONE);
+                //errorTextView.setVisibility(View.GONE);
+
+                errorTextView.setText(s);
+            }
+
         }
     }
 
