@@ -8,6 +8,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -19,6 +20,8 @@ import android.widget.TextView;
 public class MarketSnapshotFragment extends Fragment {
 
     TextView test;
+
+    ProgressBar progressBar;
 
     //JSON Keys
     private final String ASI_KEY = "ASI";
@@ -47,6 +50,8 @@ public class MarketSnapshotFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_market_snapshot, container, false);
 
+        progressBar = (ProgressBar)rootView.findViewById(R.id.mrktSnapshotProgressBar);
+
         test = (TextView)rootView.findViewById(R.id.mrktsnaptextviewtest);
         test.setMovementMethod(new ScrollingMovementMethod());
 
@@ -61,17 +66,11 @@ public class MarketSnapshotFragment extends Fragment {
             return unparsedJSON.substring(4); //removes "null" at the beginning of resulting string
         }
 
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-
-            test.setText(values[0]);
-        }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
+            progressBar.setVisibility(View.GONE);
             test.setText(s);
         }
     }
