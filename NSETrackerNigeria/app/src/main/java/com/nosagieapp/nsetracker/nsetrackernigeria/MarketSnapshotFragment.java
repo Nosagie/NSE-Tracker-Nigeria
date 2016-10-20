@@ -104,6 +104,16 @@ public class MarketSnapshotFragment extends Fragment {
                 }
             }
 
+<<<<<<< HEAD
+=======
+            //Check if result is null else parse JSON
+            if(s == null || s.equals("null")){
+
+            }else {
+                test.setText(s);
+
+            }
+>>>>>>> 2599b05c795d04882e65bf27a2690e8bc5fb6808
         }
     }
 

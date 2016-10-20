@@ -76,7 +76,6 @@ public class AllEquitiesFragment extends Fragment {
             super.onPostExecute(s);
             progressBar.setVisibility(View.GONE);
             test.setText(s);
-
         }
     }
 
