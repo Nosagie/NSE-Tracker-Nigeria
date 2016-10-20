@@ -19,6 +19,9 @@ public class MainContainerActivity extends AppCompatActivity {
     public static final String DEVELOPER_EMAIL = "nosagie.a@gmail.com";
     public static final String LOG_TAG = "Fetcher.nsetracker";
     public static final String API_CALL_ERROR_STRING = "NSE site is down, retry later";
+    public static final String PARSE_ERROR_STRING = "Error Reading Data, retry later ";
+
+    private static final String ACTION_BAR_COLOR = "#003300";
 
     //Buttons
     private Button mMarketSnapshotButton, mGainersandLosersButton, mAllEquitiesButton,mCompanyDirectoryButton;
@@ -28,7 +31,7 @@ public class MainContainerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_container);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003300")));
+        toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(ACTION_BAR_COLOR)));
         setSupportActionBar(toolbar);
 
          // Add the fragment to the 'fragment_container' FrameLayout
