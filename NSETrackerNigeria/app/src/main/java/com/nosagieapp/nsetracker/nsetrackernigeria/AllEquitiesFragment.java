@@ -31,19 +31,19 @@ public class AllEquitiesFragment extends Fragment {
 
     //Keys for JSON API Call
     private final String SYMBOL_KEY = "Symbol";
-    private final String Prev_Closing_Price_KEY = "PrevClosingPrice";
-    private final String Opening_Price_KEY = "OpeningPrice";
-    private final String High_Price_KEY = "HighPrice";
-    private final String Low_Price_KEY = "LowPrice";
-    private final String Close_Price_KEY = "ClosePrice";
-    private final String Change_KEY = "Change";
-    private final String Perc_Change_KEY = "PercChange";
-    private final String Trades_KEY = "Trades";
-    private final String Volume_KEY = "Volume";
-    private final String Value_KEY = "Value";
-    private final String Market_KEY = "Market";
-    private final String Sector_KEY = "Sector";
-    private final String Company2_KEY = "Company2"; //same as symbol but returned with API call
+    private final String PREV_CLOSING_PRICE_KEY = "PrevClosingPrice";
+    private final String OPENING_PRICE_KEY = "OpeningPrice";
+    private final String HIGH_PRICE_KEY = "HighPrice";
+    private final String LOW_PRICE_KEY = "LowPrice";
+    private final String CLOSE_PRICE_KEY = "ClosePrice";
+    private final String CHANGE_KEY = "Change";
+    private final String PERC_CHANGE_KEY = "PercChange";
+    private final String TRADES_KEY = "Trades";
+    private final String VOLUME_KEY = "Volume";
+    private final String VALUE_KEY = "Value";
+    private final String MARKET_KEY = "Market";
+    private final String SECTOR_KEY = "Sector";
+    private final String COMPANY2_KEY = "Company2"; //same as symbol but returned with API call
 
     public AllEquitiesFragment() {
         // Required empty public constructor
@@ -85,7 +85,6 @@ public class AllEquitiesFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             progressBar.setVisibility(View.GONE);
-            allEquitiesErrorTextView.setText(s);
 
             if(s == null || s.equals("null")){
                 allEquitiesErrorTextView.setText(MainContainerActivity.API_CALL_ERROR_STRING);
@@ -104,36 +103,36 @@ public class AllEquitiesFragment extends Fragment {
 
                         //Get Values
                         symbol = jsonSymbolToAdd.getString(SYMBOL_KEY);
-                        market = jsonSymbolToAdd.getString(Market_KEY);
-                        sector = jsonSymbolToAdd.getString(Sector_KEY);
-                        company2 = jsonSymbolToAdd.getString(Company2_KEY);
-                        trades = jsonSymbolToAdd.getString(Trades_KEY);
-                        volume = jsonSymbolToAdd.getString(Volume_KEY);
-                        prevClosingPrice = jsonSymbolToAdd.getString(Prev_Closing_Price_KEY);
-                        openingPrice = jsonSymbolToAdd.getString(Opening_Price_KEY);
-                        highPrice = jsonSymbolToAdd.getString(High_Price_KEY);
-                        lowPrice = jsonSymbolToAdd.getString(Low_Price_KEY);
-                        change = jsonSymbolToAdd.getString(Change_KEY);
-                        percChange = jsonSymbolToAdd.getString(Perc_Change_KEY);
-                        value = jsonSymbolToAdd.getString(Value_KEY);
+                        market = jsonSymbolToAdd.getString(MARKET_KEY);
+                        sector = jsonSymbolToAdd.getString(SECTOR_KEY);
+                        company2 = jsonSymbolToAdd.getString(COMPANY2_KEY);
+                        trades = jsonSymbolToAdd.getString(TRADES_KEY);
+                        volume = jsonSymbolToAdd.getString(VOLUME_KEY);
+                        prevClosingPrice = jsonSymbolToAdd.getString(PREV_CLOSING_PRICE_KEY);
+                        openingPrice = jsonSymbolToAdd.getString(OPENING_PRICE_KEY);
+                        highPrice = jsonSymbolToAdd.getString(HIGH_PRICE_KEY);
+                        lowPrice = jsonSymbolToAdd.getString(LOW_PRICE_KEY);
+                        change = jsonSymbolToAdd.getString(CHANGE_KEY);
+                        percChange = jsonSymbolToAdd.getString(PERC_CHANGE_KEY);
+                        value = jsonSymbolToAdd.getString(VALUE_KEY);
 
                         //Format Integers and Doubles
 
                         //Create HashMap and add to List
                         symbolToAdd = new HashMap<>();
                         symbolToAdd.put(SYMBOL_KEY,symbol);
-                        symbolToAdd.put(Market_KEY,market);
-                        symbolToAdd.put(Sector_KEY,sector);
-                        symbolToAdd.put(Company2_KEY,company2);
-                        symbolToAdd.put(Trades_KEY,trades.toString());
-                        symbolToAdd.put(Volume_KEY,volume.toString());
-                        symbolToAdd.put(Prev_Closing_Price_KEY,prevClosingPrice.toString());
-                        symbolToAdd.put(Opening_Price_KEY,openingPrice.toString());
-                        symbolToAdd.put(High_Price_KEY,highPrice.toString());
-                        symbolToAdd.put(Low_Price_KEY,lowPrice.toString());
-                        symbolToAdd.put(Change_KEY,change.toString());
-                        symbolToAdd.put(Perc_Change_KEY,percChange.toString());
-                        symbolToAdd.put(Value_KEY,value.toString());
+                        symbolToAdd.put(MARKET_KEY,market);
+                        symbolToAdd.put(SECTOR_KEY,sector);
+                        symbolToAdd.put(COMPANY2_KEY,company2);
+                        symbolToAdd.put(TRADES_KEY,trades.toString());
+                        symbolToAdd.put(VOLUME_KEY,volume.toString());
+                        symbolToAdd.put(PREV_CLOSING_PRICE_KEY,prevClosingPrice.toString());
+                        symbolToAdd.put(OPENING_PRICE_KEY,openingPrice.toString());
+                        symbolToAdd.put(HIGH_PRICE_KEY,highPrice.toString());
+                        symbolToAdd.put(LOW_PRICE_KEY,lowPrice.toString());
+                        symbolToAdd.put(CHANGE_KEY,change.toString());
+                        symbolToAdd.put(PERC_CHANGE_KEY,percChange.toString());
+                        symbolToAdd.put(VALUE_KEY,value.toString());
 
                         allEquities.add(symbolToAdd);
 
