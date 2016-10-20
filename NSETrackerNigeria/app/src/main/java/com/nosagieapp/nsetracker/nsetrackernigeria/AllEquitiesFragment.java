@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 public class AllEquitiesFragment extends Fragment {
 
-    private TextView test;
+    private static TextView test;
 
-    ProgressBar progressBar;
+    private static ProgressBar progressBar;
 
 
     //Keys for JSON API Call

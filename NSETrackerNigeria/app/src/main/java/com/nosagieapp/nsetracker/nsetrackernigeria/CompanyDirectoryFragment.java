@@ -17,9 +17,9 @@ import android.widget.TextView;
  */
 public class CompanyDirectoryFragment extends Fragment {
 
-    TextView test;
+    private static TextView test;
 
-    ProgressBar progressBar;
+    private static ProgressBar progressBar;
 
     public CompanyDirectoryFragment() {
         // Required empty public constructor

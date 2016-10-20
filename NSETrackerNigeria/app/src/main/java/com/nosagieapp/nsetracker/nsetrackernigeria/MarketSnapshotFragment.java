@@ -19,9 +19,9 @@ import android.widget.TextView;
  */
 public class MarketSnapshotFragment extends Fragment {
 
-    TextView test;
+    private static TextView test;
 
-    ProgressBar progressBar;
+    private static ProgressBar progressBar;
 
     //JSON Keys
     private final String ASI_KEY = "ASI";
