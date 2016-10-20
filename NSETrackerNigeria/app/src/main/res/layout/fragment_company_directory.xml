@@ -6,21 +6,16 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/progressBarWrapper"
-        >
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@android:style/Widget.ProgressBar.Large"
+            style="@android:style/Widget.ProgressBar.Small"
             android:id="@+id/companyDirectoryProgressBar"
-            android:padding="4dp" />
+            android:padding="4dp"
+            tools:targetApi="lollipop"
+            android:layout_gravity="center|center_horizontal|center_vertical"/>
 
-    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
