@@ -23,7 +23,7 @@ import org.json.JSONObject;
  */
 public class MarketSnapshotFragment extends Fragment {
 
-    private static TextView errorTextView;
+    private static TextView marketSnapshotErrorTextView;
 
     private static ProgressBar progressBar;
 
@@ -56,8 +56,8 @@ public class MarketSnapshotFragment extends Fragment {
 
         progressBar = (ProgressBar)rootView.findViewById(R.id.mrktSnapshotProgressBar);
 
-        errorTextView = (TextView)rootView.findViewById(R.id.mrktSnapshotErrorTextView);
-        errorTextView.setMovementMethod(new ScrollingMovementMethod());
+        marketSnapshotErrorTextView = (TextView)rootView.findViewById(R.id.mrktSnapshotErrorTextView);
+        marketSnapshotErrorTextView.setMovementMethod(new ScrollingMovementMethod());
 
         return rootView;
     }
@@ -74,18 +74,16 @@ public class MarketSnapshotFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
+            progressBar.setVisibility(View.GONE);
             //checks if returned string is null, if yes - display error to user
             if (s == null || s.equals("null")){
-                //Use Helper method
-                errorTextView.setText(MainContainerActivity.API_CALL_ERROR_STRING);
-                MainContainerActivity.displayAPiCallErrorToast(getActivity());
+                //Show Error to User
+                marketSnapshotErrorTextView.setText(MainContainerActivity.API_CALL_ERROR_STRING);
 
             }else{ //else update UI Thread with Parsed JSON Data
 
                 //Make Progress Bar and Error TextView Disappear and Make other UI Elements Visible
-                progressBar.setVisibility(View.GONE);
-                //errorTextView.setVisibility(View.GONE);
+                //marketSnapshotErrorTextView.setVisibility(View.GONE);
 
                 try {
                     //Parse JSON
@@ -96,13 +94,13 @@ public class MarketSnapshotFragment extends Fragment {
                     Long value = unparsedSnapshot.getLong(VALUE_KEY);
                     Long marketCap = unparsedSnapshot.getLong(MARKET_CAP_KEY);
 
-                    errorTextView.setText(allShareIndex + "\n" + deals + "\n" + volume + "\n" + value + "\n" + marketCap);
-
                     //TODO:UPDATE UI ELEMENTS
+                    marketSnapshotErrorTextView.setText(allShareIndex + "\n" + deals + "\n" + volume + "\n" + value + "\n" + marketCap);
+
 
                 }catch (JSONException e){
                     Log.e(MainContainerActivity.LOG_TAG,MainContainerActivity.PARSE_ERROR_STRING + MainContainerActivity.DEVELOPER_EMAIL);
-                    errorTextView.setText(MainContainerActivity.PARSE_ERROR_STRING);
+                    marketSnapshotErrorTextView.setText(MainContainerActivity.PARSE_ERROR_STRING);
                 }
             }
 

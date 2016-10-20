@@ -19,7 +19,7 @@ public class MainContainerActivity extends AppCompatActivity {
     public static final String DEVELOPER_EMAIL = "nosagie.a@gmail.com";
     public static final String LOG_TAG = "Fetcher.nsetracker";
     public static final String API_CALL_ERROR_STRING = "NSE site is down, retry later";
-    public static final String PARSE_ERROR_STRING = "Error Reading Data, retry later ";
+    public static final String PARSE_ERROR_STRING = "Error Reading Data, contact developer ";
 
     private static final String ACTION_BAR_COLOR = "#003300";
 
@@ -106,6 +106,6 @@ public class MainContainerActivity extends AppCompatActivity {
 
     //Helper Method to display Toast Error to user
     public static void displayAPiCallErrorToast(Context c){
-        Toast.makeText(c,"NSE site is down, retrying data call",Toast.LENGTH_SHORT);
+        Toast.makeText(c,"NSE site is down, please retry",Toast.LENGTH_SHORT);
     }
 }

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.MarketSnapshotFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
