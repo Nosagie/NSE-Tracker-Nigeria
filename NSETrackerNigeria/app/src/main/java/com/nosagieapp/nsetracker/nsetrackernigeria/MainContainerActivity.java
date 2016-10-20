@@ -34,6 +34,8 @@ public class MainContainerActivity extends AppCompatActivity {
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(ACTION_BAR_COLOR)));
         setSupportActionBar(toolbar);
 
+        //TODO:Check if WIFI is On/Connected
+
          // Add the fragment to the 'fragment_container' FrameLayout
          getSupportFragmentManager().beginTransaction()
                .add(R.id.mainFragmentContainer, new MarketSnapshotFragment()).commit();
