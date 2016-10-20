@@ -5,10 +5,18 @@
     tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.MarketSnapshotFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.ProgressBar.Small"
+        android:id="@+id/mrktSnapshotProgressBar"
+        android:padding="4dp"
+        tools:targetApi="lollipop"
+        android:layout_gravity="center|center_horizontal|center_vertical"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
         android:id="@+id/mrktsnaptextviewtest"/>
 
 </FrameLayout>

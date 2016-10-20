@@ -9,6 +9,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -17,7 +18,9 @@ import android.widget.TextView;
  */
 public class GainersandLosersFragment extends Fragment {
 
-    TextView test;
+    private static TextView test;
+
+    private static ProgressBar progressBar;
 
     //JSON KEYS
     private final String SYMBOL_KEY = "SYMBOL";
@@ -47,6 +50,9 @@ public class GainersandLosersFragment extends Fragment {
         test = (TextView)rootView.findViewById(R.id.gainersloserstestTextView);
         test.setMovementMethod(new ScrollingMovementMethod());
 
+        progressBar = (ProgressBar)rootView.findViewById(R.id.gainersandLosersProgressBar);
+
+
         return rootView;
     }
 
@@ -64,6 +70,8 @@ public class GainersandLosersFragment extends Fragment {
 
             String gainers = results[0].substring(4);
             String losers = results[1].substring(4);
+
+            progressBar.setVisibility(View.GONE);
 
             test.setText(gainers + "\n\n" + losers);
 

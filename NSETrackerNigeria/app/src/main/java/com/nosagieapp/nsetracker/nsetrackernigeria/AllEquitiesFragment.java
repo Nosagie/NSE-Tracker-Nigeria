@@ -8,12 +8,15 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
 public class AllEquitiesFragment extends Fragment {
 
-    private TextView test;
+    private static TextView test;
+
+    private static ProgressBar progressBar;
 
 
     //Keys for JSON API Call
@@ -52,6 +55,8 @@ public class AllEquitiesFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_all_equities, container, false);
 
+        progressBar = (ProgressBar)rootView.findViewById(R.id.allEquitiesProgressBar);
+
         test = (TextView)rootView.findViewById(R.id.alleqTextViewtest);
         test.setMovementMethod(new ScrollingMovementMethod());
 
@@ -69,7 +74,7 @@ public class AllEquitiesFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
+            progressBar.setVisibility(View.GONE);
             test.setText(s);
 
         }

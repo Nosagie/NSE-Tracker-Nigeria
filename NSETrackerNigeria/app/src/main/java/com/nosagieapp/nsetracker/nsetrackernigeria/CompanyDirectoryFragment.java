@@ -8,6 +8,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -16,7 +17,9 @@ import android.widget.TextView;
  */
 public class CompanyDirectoryFragment extends Fragment {
 
-    TextView test;
+    private static TextView test;
+
+    private static ProgressBar progressBar;
 
     public CompanyDirectoryFragment() {
         // Required empty public constructor
@@ -37,25 +40,30 @@ public class CompanyDirectoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_company_directory, container, false);
 
+        progressBar = (ProgressBar)rootView.findViewById(R.id.companyDirectoryProgressBar);
+
         test = (TextView)rootView.findViewById(R.id.companyDireTextViewtest);
         test.setMovementMethod(new ScrollingMovementMethod());
 
         return rootView;
     }
 
-    private class fetchCompanyDirectory extends AsyncTask<String,Void,String>{
+    private class fetchCompanyDirectory extends AsyncTask<String,Integer,String>{
         @Override
         protected String doInBackground(String... params) {
+
             String unparsedJSON = Fetcher.fetchCompanyDirectory();
 
             return unparsedJSON.substring(4);//removes "null" at beginning of string
         }
 
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
+            progressBar.setVisibility(View.GONE);
             test.setText(s);
+
         }
     }
 
