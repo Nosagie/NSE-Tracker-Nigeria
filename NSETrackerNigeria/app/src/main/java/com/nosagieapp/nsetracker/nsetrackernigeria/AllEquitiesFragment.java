@@ -71,7 +71,6 @@ public class AllEquitiesFragment extends Fragment {
             super.onPostExecute(s);
 
             test.setText(s);
-
         }
     }
 

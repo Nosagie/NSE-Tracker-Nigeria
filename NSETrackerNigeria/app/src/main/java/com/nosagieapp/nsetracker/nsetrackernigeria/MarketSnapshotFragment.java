@@ -65,7 +65,13 @@ public class MarketSnapshotFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            test.setText(s);
+            //Check if result is null else parse JSON
+            if(s == null || s.equals("null")){
+
+            }else {
+                test.setText(s);
+
+            }
         }
     }
 
