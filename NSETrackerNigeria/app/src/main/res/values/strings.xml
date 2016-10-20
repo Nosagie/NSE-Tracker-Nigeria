@@ -9,8 +9,14 @@
     <string name="viewAllEquitiesLabel">EQUITIES</string>
     <string name="companyDirectoryLabel">DIRECTORY</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
 
+    <!--For MarketSnapshot Text-->
+    <string name="allShareIndexTitle">All Share Index</string>
+    <string name="totalTradesTitle">Total Trades</string>
+    <string name="tradeValueTitle">Total Trade Value</string>
+    <string name="tradeVolumeTitle">Trade Volume</string>
+
+    <!--For Ads-->
+    <string name="banner_add_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

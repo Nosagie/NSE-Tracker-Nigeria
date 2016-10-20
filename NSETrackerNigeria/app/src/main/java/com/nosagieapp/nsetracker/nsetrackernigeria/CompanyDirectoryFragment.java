@@ -130,7 +130,7 @@ public class CompanyDirectoryFragment extends Fragment {
                     String sector,subSector,companyName,marketClassification,dateListed,dateIncorporated,website,logoURL;
                     String stockPricePercChange,stockPriceCurrent,companyProfileSumm;
                     String natureOfBusiness,companyAddress,telephone,fax,email,secretary,auditor,registrar,boardOfDirectors,id;
-                    String annualHighPrice,annualHighPriceDateTime,annualLowPrice,annualLowPriceDateTime;
+                    String annualHighPrice,annualHighPriceDateTime,annualLowPrice,annualLowPriceDateTime,stockPriceChange;
 
                     for(int i = 0; i < companiesJSON.length();i++){
 
@@ -161,6 +161,7 @@ public class CompanyDirectoryFragment extends Fragment {
                         natureOfBusiness = companyToAddJSON.getString(NATUREOFBUSINESS_KEY);
                         companyAddress = companyToAddJSON.getString(COMPANYADDRESS_KEY);
                         telephone = companyToAddJSON.getString(TELEPHONE_KEY);
+                        stockPriceChange = companyToAddJSON.getString(STOCKPRICECHANGE_KEY);
                         fax = companyToAddJSON.getString(FAX_KEY);
                         email = companyToAddJSON.getString(EMAIL_KEY);
                         secretary = companyToAddJSON.getString(SECRETARY_KEY);
@@ -195,6 +196,7 @@ public class CompanyDirectoryFragment extends Fragment {
                         companyToAdd.put(DATEINCORPORATED_KEY,dateIncorporated);
                         companyToAdd.put(WEBSITE_KEY,website);
                         companyToAdd.put(LOGOURL_KEY,logoURL);
+                        companyToAdd.put(STOCKPRICECHANGE_KEY,stockPriceChange);
                         companyToAdd.put(STOCKPRICEPERCCHANGE_KEY,stockPricePercChange);
                         companyToAdd.put(STOCKPRICECURRENT_KEY,stockPriceCurrent);
                         companyToAdd.put(COMPANYPROFILESUMM_KEY,companyProfileSumm);

@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,6 +48,9 @@ public class MarketSnapshotFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Initialize Adds TODO:UPDATE ID IN STRING FILE AND HERE
+        MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+
         new fetchMarketSnapshot().execute();
 
     }
@@ -55,6 +62,10 @@ public class MarketSnapshotFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_market_snapshot, container, false);
 
         progressBar = (ProgressBar)rootView.findViewById(R.id.mrktSnapshotProgressBar);
+
+        AdView mAdView = (AdView)rootView.findViewById(R.id.adView); //Add Ads
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         marketSnapshotErrorTextView = (TextView)rootView.findViewById(R.id.mrktSnapshotErrorTextView);
         marketSnapshotErrorTextView.setMovementMethod(new ScrollingMovementMethod());
