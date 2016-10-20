@@ -61,7 +61,6 @@ public class CompanyDirectoryFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            progressBar.setProgress(100);
             progressBar.setVisibility(View.GONE);
             test.setText(s);
 
