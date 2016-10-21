@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ public class MarketSnapshotFragment extends Fragment {
 
     private static TextView marketSnapshotErrorTextView,allShareIndexTextView,marketCapTextView;
     private static TextView totalTradesTextView,tradeValueTextView,tradeVolumeTextView;
+
+    private static LinearLayout marketSnapshotContentLinearLayout;
 
     private static ProgressBar progressBar;
 
@@ -69,7 +72,8 @@ public class MarketSnapshotFragment extends Fragment {
         tradeValueTextView = (TextView)rootView.findViewById(R.id.tradeValueTextView);
         tradeVolumeTextView = (TextView)rootView.findViewById(R.id.tradeVolumeTextView);
         marketCapTextView = (TextView)rootView.findViewById(R.id.marketCapTextView);
-
+        marketSnapshotContentLinearLayout = (LinearLayout)rootView.findViewById(R.id.mrktSnapshotContent);
+        marketSnapshotContentLinearLayout.setVisibility(View.GONE);
 
         //For ads
         AdView mAdView = (AdView)rootView.findViewById(R.id.adView);
@@ -94,6 +98,7 @@ public class MarketSnapshotFragment extends Fragment {
             super.onPostExecute(s);
             progressBar.setVisibility(View.GONE);
             marketSnapshotErrorTextView.setVisibility(View.GONE);
+            marketSnapshotContentLinearLayout.setVisibility(View.VISIBLE);
 
             //checks if returned string is null, if yes - display error to user
             if (s == null || s.equals("null")){
