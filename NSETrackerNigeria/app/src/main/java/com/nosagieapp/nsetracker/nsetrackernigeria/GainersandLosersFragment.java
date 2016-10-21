@@ -1,17 +1,23 @@
 package com.nosagieapp.nsetracker.nsetrackernigeria;
 
 
-
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,8 +33,14 @@ import java.util.HashMap;
 public class GainersandLosersFragment extends Fragment {
 
     private static TextView gainersAndLosersErrorTextView;
+    private static ListView gainersListView,losersListView;
+    private static LinearLayout gainersAndLosersLinearLayout;
 
     private static ProgressBar progressBar;
+
+    //ArrayAdapter to display List
+    private static ArrayAdapter gainersListAdapter;
+    private static ArrayAdapter losersListAdapter;
 
     //JSON KEYS
     private final String SYMBOL_KEY = "SYMBOL";
@@ -50,6 +62,9 @@ public class GainersandLosersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Initialize Adds TODO:UPDATE ID IN STRING FILE AND HERE
+        MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+
         new fetchGainersandLosersTask().execute();
     }
 
@@ -60,10 +75,16 @@ public class GainersandLosersFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_gainersand_losers, container, false);
 
         gainersAndLosersErrorTextView = (TextView)rootView.findViewById(R.id.gainersloserserrorTextView);
-        gainersAndLosersErrorTextView.setMovementMethod(new ScrollingMovementMethod());
-
         progressBar = (ProgressBar)rootView.findViewById(R.id.gainersandLosersProgressBar);
+        gainersListView = (ListView)rootView.findViewById(R.id.gainersListView);
+        losersListView = (ListView)rootView.findViewById(R.id.losersListView);
+        gainersAndLosersLinearLayout = (LinearLayout)rootView.findViewById(R.id.gainersAndLosersContent);
+        gainersAndLosersLinearLayout.setVisibility(View.GONE);
 
+        //For ads
+        AdView mAdView = (AdView)rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         return rootView;
     }
@@ -85,6 +106,9 @@ public class GainersandLosersFragment extends Fragment {
                 gainersAndLosersErrorTextView.setText(MainContainerActivity.API_CALL_ERROR_STRING);
             }
             else {
+                gainersAndLosersErrorTextView.setVisibility(View.GONE);
+                gainersAndLosersLinearLayout.setVisibility(View.VISIBLE);
+
                 String gainers = results[0].substring(4);
                 String losers = results[1].substring(4);
 
@@ -146,7 +170,14 @@ public class GainersandLosersFragment extends Fragment {
                         topLosers.add(symbolToAdd);
                     }
 
-                    //TODO:UPDATE UI
+                    //Initialize and set list adapters
+                    gainersListAdapter = new GainersAndLosersAdapter(getActivity(),android.R.layout.simple_list_item_1,topGainers);
+                    gainersListView.setAdapter(gainersListAdapter);
+                    losersListAdapter = new GainersAndLosersAdapter(getActivity(),R.layout.gainers_and_losers_list_item,topLosers);
+                    losersListView.setAdapter(losersListAdapter);
+
+
+
                     gainersAndLosersErrorTextView.setText(topGainers.get(0).get(SYMBOL_KEY)+ "\n\n" + topLosers.get(0).get(SYMBOL_KEY));
 
                 }catch (JSONException e){
@@ -157,5 +188,33 @@ public class GainersandLosersFragment extends Fragment {
 
         }
     }
+
+    private class GainersAndLosersAdapter extends ArrayAdapter{
+            private final Context context;
+        private final ArrayList<HashMap<String,String>> values;
+
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            //Set up custom list view
+            View rowView = convertView;
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            rowView = inflater.inflate(R.layout.gainers_and_losers_list_item, null);
+
+            TextView symbol = (TextView)rowView.findViewById(R.id.gainersandLosersSymbolListView);
+            symbol.setText(values.get(position).get(SYMBOL_KEY));
+
+            return  rowView;
+
+        }
+
+        public GainersAndLosersAdapter(Context context,int layout, ArrayList<HashMap<String,String>> values) {
+            super(context, layout, values);
+            this.context = context;
+            this.values = values;
+        }
+
+    }
+
 
 }

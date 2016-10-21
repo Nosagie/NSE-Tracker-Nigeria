@@ -18,6 +18,11 @@
     <string name="tradeVolumeTitle">Volume:</string>
     <string name="marketCapTitle">Cap: </string>
 
+    <!--For GainersandLosersFragment Text-->
+    <string name="gainersTextView">Gainers</string>
+    <string name="losersTextView">Losers</string>
+
+
     <!--For Ads-->
     <string name="banner_add_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>
