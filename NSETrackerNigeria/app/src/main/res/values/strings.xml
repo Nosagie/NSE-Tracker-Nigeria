@@ -12,10 +12,11 @@
     <string name="title_activity_main">MainActivity</string>
 
     <!--For MarketSnapshot Text-->
-    <string name="allShareIndexTitle">All Share Index</string>
-    <string name="totalTradesTitle">Total Trades</string>
-    <string name="tradeValueTitle">Total Trade Value</string>
-    <string name="tradeVolumeTitle">Trade Volume</string>
+    <string name="allShareIndexTitle">ASI:</string>
+    <string name="totalTradesTitle">Deals:</string>
+    <string name="tradeValueTitle">Value:</string>
+    <string name="tradeVolumeTitle">Volume:</string>
+    <string name="marketCapTitle">Cap: </string>
 
     <!--For Ads-->
     <string name="banner_add_unit_id">ca-app-pub-3940256099942544/6300978111</string>
