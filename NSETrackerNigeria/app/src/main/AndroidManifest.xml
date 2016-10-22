@@ -20,6 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CompanyDetailSlideActivity"
+            android:label="@string/title_activity_company_detail"
+            android:parentActivityName=".MainContainerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nosagieapp.nsetracker.nsetrackernigeria.MainContainerActivity" />
+        </activity>
     </application>
 
 </manifest>

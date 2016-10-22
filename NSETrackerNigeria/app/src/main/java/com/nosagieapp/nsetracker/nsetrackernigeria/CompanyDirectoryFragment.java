@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,51 +38,56 @@ public class CompanyDirectoryFragment extends Fragment {
     private static ProgressBar progressBar;
 
     //JSON Keys
-    private static final String INTERNATIONALSECIN_KEY = "InternationSecIN";
-    private static final String SYMBOL_KEY = "Symbol";
-    private static final String PREVCLOSE_KEY ="PrevClose";
-    private static final String OPENPRICE_KEY = "OpenPrice";
-    private static final String DAYSHIGH_KEY = "DaysHigh";
-    private static final String DAYSLOW_KEY = "DaysLow";
-    private static final String VOLUME_KEY = "Volume";
-    private static final String VALUE_KEY = "Value";
-    private static final String MARKETCAP_KEY = "MarketCap";
-    private static final String SHARESOUTSTANDING_KEY = "SharesOutstanding";
-    private static final String DIVIDEND_KEY = "Dividend";
-    private static final String YIELD_KEY = "Yield";
-    private static final String SECTOR_KEY = "Sector";
-    private static final String SUBSECTOR_KEY = "SubSector";
-    private static final String COMPANYNAME_KEY = "CompanyName";
-    private static final String MARKETCLASSIFICATION_KEY = "MarketClassification";
-    private static final String DATELISTED_KEY = "DateListed";
-    private static final String DATEINCORPORATED_KEY = "DateOfIncorporation";
-    private static final String WEBSITE_KEY = "Website";
-    private static final String LOGOURL_KEY = "Logourl";
-    private static final String STOCKPRICEPERCCHANGE_KEY = "StockPricePercChange";
-    private static final String STOCKPRICECHANGE_KEY = "StockPriceChange";
-    private static final String STOCKPRICECURRENT_KEY = "StockPriceCur";
-    private static final String COMPANYPROFILESUMM_KEY = "CompanyProfileSummary";
-    private static final String NATUREOFBUSINESS_KEY = "NatureofBusiness";
-    private static final String COMPANYADDRESS_KEY = "CompanyAddress";
-    private static final String TELEPHONE_KEY = "Telephone";
-    private static final String FAX_KEY = "Fax";
-    private static final String EMAIL_KEY = "Email";
-    private static final String SECRETARY_KEY = "CompanySecretary";
-    private static final String AUDITOR_KEY = "Auditor";
-    private static final String REGISTRAR_KEY = "Registrars";
-    private static final String BOARDOFDIRECTORS_KEY = "BoardOfDirectors";
-    private static final String ID_KEY = "ID";
-    private static final String ANNUALHIGHPRICE_KEY = "HIGH52WK_PRICE";
-    private static final String ANNUALHIGHPRICEDATETIME_KEY = "HIGH52WK_DATETIME";
-    private static final String ANNUALLOWPRICE_KEY = "LOW52WK_PRICE";
-    private static final String ANNUALLOWPRICEDATETIME = "LOW52WK_DATETIME";
+    public static final String INTERNATIONALSECIN_KEY = "InternationSecIN";
+    public static final String SYMBOL_KEY = "Symbol";
+    public static final String PREVCLOSE_KEY ="PrevClose";
+    public static final String OPENPRICE_KEY = "OpenPrice";
+    public static final String DAYSHIGH_KEY = "DaysHigh";
+    public static final String DAYSLOW_KEY = "DaysLow";
+    public static final String VOLUME_KEY = "Volume";
+    public static final String VALUE_KEY = "Value";
+    public static final String MARKETCAP_KEY = "MarketCap";
+    public static final String SHARESOUTSTANDING_KEY = "SharesOutstanding";
+    public static final String DIVIDEND_KEY = "Dividend";
+    public static final String YIELD_KEY = "Yield";
+    public static final String SECTOR_KEY = "Sector";
+    public static final String SUBSECTOR_KEY = "SubSector";
+    public static final String COMPANYNAME_KEY = "CompanyName";
+    public static final String MARKETCLASSIFICATION_KEY = "MarketClassification";
+    public static final String DATELISTED_KEY = "DateListed";
+    public static final String DATEINCORPORATED_KEY = "DateOfIncorporation";
+    public static final String WEBSITE_KEY = "Website";
+    public static final String LOGOURL_KEY = "Logourl";
+    public static final String STOCKPRICEPERCCHANGE_KEY = "StockPricePercChange";
+    public static final String STOCKPRICECHANGE_KEY = "StockPriceChange";
+    public static final String STOCKPRICECURRENT_KEY = "StockPriceCur";
+    public static final String COMPANYPROFILESUMM_KEY = "CompanyProfileSummary";
+    public static final String NATUREOFBUSINESS_KEY = "NatureofBusiness";
+    public static final String COMPANYADDRESS_KEY = "CompanyAddress";
+    public static final String TELEPHONE_KEY = "Telephone";
+    public static final String FAX_KEY = "Fax";
+    public static final String EMAIL_KEY = "Email";
+    public static final String SECRETARY_KEY = "CompanySecretary";
+    public static final String AUDITOR_KEY = "Auditor";
+    public static final String REGISTRAR_KEY = "Registrars";
+    public static final String BOARDOFDIRECTORS_KEY = "BoardOfDirectors";
+    public static final String ID_KEY = "ID";
+    public static final String ANNUALHIGHPRICE_KEY = "HIGH52WK_PRICE";
+    public static final String ANNUALHIGHPRICEDATETIME_KEY = "HIGH52WK_DATETIME";
+    public static final String ANNUALLOWPRICE_KEY = "LOW52WK_PRICE";
+    public static final String ANNUALLOWPRICEDATETIME = "LOW52WK_DATETIME";
 
     //HashMap to store all Equities
-    private ArrayList<HashMap<String,String>> allCompanies;
+    private static ArrayList<HashMap<String,String>> allCompanies;
 
     public CompanyDirectoryFragment() {
         // Required empty public constructor
     }
+
+    public static ArrayList getCompanyDirectory(){
+        return allCompanies;
+    }
+
 
 
 
@@ -230,19 +234,20 @@ public class CompanyDirectoryFragment extends Fragment {
 
                     }
 
-
+                if(getActivity()!=null) {
                     progressBar.setVisibility(View.GONE);
 
-                    directoryListAdapter = new directoryListAdapter(getActivity(),R.layout.directory_list_item,allCompanies);
+                    directoryListAdapter = new directoryListAdapter(getActivity(), R.layout.directory_list_item, allCompanies);
                     companyDirectoryGridView.setAdapter(directoryListAdapter);
 
                     companyDirectoryGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            //TODO:OPEN DIALOGFRAGMENT/ACTIVITY
-                            Toast.makeText(getActivity(),allCompanies.get(position).get(COMPANYNAME_KEY),Toast.LENGTH_SHORT).show();
+                            CompanyDirectoryDialogFragment directoryDialog = new CompanyDirectoryDialogFragment().newInstance(allCompanies.get(position), position);
+                            directoryDialog.show(getFragmentManager(), allCompanies.get(position).get(COMPANYNAME_KEY));
                         }
                     });
+                }
 
 
                 }catch (JSONException e){

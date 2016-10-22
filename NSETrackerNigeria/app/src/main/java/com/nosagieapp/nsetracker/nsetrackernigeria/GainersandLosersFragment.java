@@ -172,12 +172,14 @@ public class GainersandLosersFragment extends Fragment {
 
 
                     //Initialize and set list adapters
-                    gainersListAdapter = new GainersAndLosersAdapter(getActivity(),R.layout.gainers_and_losers_list_item,topGainers,true);
-                    gainersListView.setAdapter(gainersListAdapter);
-                    losersListAdapter = new GainersAndLosersAdapter(getActivity(),R.layout.gainers_and_losers_list_item,topLosers,false);
-                    losersListView.setAdapter(losersListAdapter);
+                    if(getActivity()!=null) {
+                        gainersListAdapter = new GainersAndLosersAdapter(getActivity(), R.layout.gainers_and_losers_list_item, topGainers, true);
+                        gainersListView.setAdapter(gainersListAdapter);
+                        losersListAdapter = new GainersAndLosersAdapter(getActivity(), R.layout.gainers_and_losers_list_item, topLosers, false);
+                        losersListView.setAdapter(losersListAdapter);
 
-                    gainersAndLosersLinearLayout.setVisibility(View.VISIBLE);
+                        gainersAndLosersLinearLayout.setVisibility(View.VISIBLE);
+                    }
 
 
                 }catch (JSONException e){

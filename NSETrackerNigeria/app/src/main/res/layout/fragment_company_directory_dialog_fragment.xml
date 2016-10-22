@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="4dp"
+    tools:context=".CompanyDirectoryDialogFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="16"
+        style="@style/marketSnapshotTitles"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:id="@+id/directoryDialogCompanyLabel"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        style="@style/dialogItem"
+        android:layout_height="wrap_content"
+        android:layout_weight="16"
+        android:background="#D3D3D3"
+        android:id="@+id/visitWebsiteButton"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        style="@style/dialogItem"
+        android:layout_height="wrap_content"
+        android:layout_weight="16"
+        android:id="@+id/callCompanyButton"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        style="@style/dialogItem"
+        android:layout_height="wrap_content"
+        android:layout_weight="16"
+        android:background="#D3D3D3"
+        android:id="@+id/emailCompanyButton"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        style="@style/dialogItem"
+        android:layout_height="wrap_content"
+        android:layout_weight="16"
+        android:id="@+id/viewCompanyInMapsButton"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        style="@style/dialogItem"
+        android:layout_height="wrap_content"
+        android:layout_weight="16"
+        android:gravity="center"
+        android:background="#D3D3D3"
+        android:id="@+id/companyDetailsButton"/>
+
+</LinearLayout>
