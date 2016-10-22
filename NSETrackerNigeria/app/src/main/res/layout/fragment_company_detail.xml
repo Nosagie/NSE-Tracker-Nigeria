@@ -2,9 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="4dp"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.CompanyDetailFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,5 +20,132 @@
         style="@style/marketSnapshotTitles"
         android:textSize="20sp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/natureOfBusinessDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/companySummDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:layout_marginBottom="2dp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sectorTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addressDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/auditorDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/registrarDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/secretaryDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/directorsDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/annualHighDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/annualLowDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/marketCapDetailTextView"
+        style="@style/listText"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:background="#D3D3D3"
+        android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="100">
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_add_unit_id">
+        </com.google.android.gms.ads.AdView>
+    </LinearLayout>
 
 </LinearLayout>

@@ -24,6 +24,12 @@ public class MainContainerActivity extends AppCompatActivity {
     public static final String ALTERNATE_LIST_COLOR =  "#d9d9d9";
     public static final String NOT_AVAILABLE = "N/A";
 
+    //Titles
+    private static final String MARKETSNAPSHOTTITLE = "Market Snapshot";
+    private static final String GAINERSLOSERSTITLE = "Gainers & Losers";
+    private static final String ALLEQUITIESTITLE = "All Equities";
+    private static final String COMPANYDIRECTORYTITLE = "Company Directory";
+
     public static final String ACTION_BAR_COLOR = "#003300";
 
     //Buttons
@@ -50,6 +56,9 @@ public class MainContainerActivity extends AppCompatActivity {
         mMarketSnapshotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(getSupportActionBar() != null) {
+                    getSupportActionBar().setTitle(MARKETSNAPSHOTTITLE);
+                }
                 setFragment(new MarketSnapshotFragment());
             }
         });
@@ -58,6 +67,9 @@ public class MainContainerActivity extends AppCompatActivity {
         mGainersandLosersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(getSupportActionBar() != null) {
+                    getSupportActionBar().setTitle(GAINERSLOSERSTITLE);
+                }
                 setFragment(new GainersandLosersFragment());
             }
         });
@@ -66,6 +78,9 @@ public class MainContainerActivity extends AppCompatActivity {
         mAllEquitiesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(getSupportActionBar() != null) {
+                    getSupportActionBar().setTitle(ALLEQUITIESTITLE);
+                }
                 setFragment(new AllEquitiesFragment());
             }
         });
@@ -74,6 +89,9 @@ public class MainContainerActivity extends AppCompatActivity {
         mCompanyDirectoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(getSupportActionBar() != null) {
+                    getSupportActionBar().setTitle(COMPANYDIRECTORYTITLE);
+                }
                 setFragment(new CompanyDirectoryFragment());
             }
         });
