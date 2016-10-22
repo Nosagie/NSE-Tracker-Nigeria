@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:layout_margin="2dp"
+    android:padding="5dp"
     tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.EquitiesDialogFragment">
 
 
@@ -10,43 +12,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:textColor="#001a00"
         android:id="@+id/equityDialogSymbolTextView"
-        style="@style/listText"/>
+        style="@style/dialogItem"
+        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:id="@+id/equityDialogMarketTextView"
-        style="@style/gainersAndLosersListTexts"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:id="@+id/equityDialogSectorTextView"
-        style="@style/gainersAndLosersListTexts"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:id="@+id/equityDialogTradesTextView"
-        style="@style/gainersAndLosersListTexts"/>
+        style="@style/dialogItem"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:id="@+id/equityDialogVolumeTextView"
-        style="@style/gainersAndLosersListTexts"/>
+        style="@style/dialogItem"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:id="@+id/equityDialogOpenPriceTextView"
+        style="@style/dialogItem"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:id="@+id/equityDialogHighPriceTextView"
+        style="@style/dialogItem"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:id="@+id/equityDialogLowPriceTextView"
+        style="@style/dialogItem"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:id="@+id/equityDialogChangeTextView"
+        style="@style/dialogItem"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:id="@+id/prevCloseTextView"
-        style="@style/gainersAndLosersListTexts"/>
+        style="@style/dialogItem"
+        />
 
 
     <TextView
@@ -54,7 +80,8 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:id="@+id/currentPriceTextView"
-        style="@style/gainersAndLosersListTexts"/>
+        style="@style/equityDialogItem"
+        />
 
 
 </LinearLayout>

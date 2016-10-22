@@ -32,7 +32,7 @@ public class CompanyDetailSlideActivity extends AppCompatActivity {
 
         //TODO error handling
         directory = (ArrayList<HashMap<String,String>>)getIntent().getSerializableExtra(DIRECTORYDEATAIL_EXTRA);
-        companyIndex = getIntent().getIntExtra(DIRECTORYDEATAILPOSITION_EXTRA,0);
+        companyIndex = getIntent().getIntExtra(DIRECTORYDEATAILPOSITION_EXTRA, 0);
 
         num_pages = directory.size();
 
@@ -41,13 +41,13 @@ public class CompanyDetailSlideActivity extends AppCompatActivity {
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(MainContainerActivity.ACTION_BAR_COLOR)));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("COMPANY DETAILS");
 
         //start viewpager and pageradapter
         pager = (ViewPager)findViewById(R.id.pager);
         pagerAdapter = new companyDetailPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
-        pager.setCurrentItem(companyIndex-1);
-
+        pager.setCurrentItem(companyIndex);
     }
 
     //Pager Adapter
@@ -66,6 +66,7 @@ public class CompanyDetailSlideActivity extends AppCompatActivity {
         public int getCount() {
             return num_pages;
         }
+
     }
 
 }

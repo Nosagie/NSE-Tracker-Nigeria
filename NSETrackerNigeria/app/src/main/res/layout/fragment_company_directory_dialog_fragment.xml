@@ -3,34 +3,57 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:padding="4dp"
     tools:context=".CompanyDirectoryDialogFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/gainersAndLosersListTexts"
+        android:layout_weight="16"
+        style="@style/marketSnapshotTitles"
+        android:textSize="20sp"
+        android:padding="5dp"
         android:id="@+id/directoryDialogCompanyLabel"
         android:gravity="center"/>
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
+        style="@style/dialogItem"
         android:layout_height="wrap_content"
+        android:layout_weight="16"
+        android:background="#D3D3D3"
         android:id="@+id/visitWebsiteButton"/>
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
+        style="@style/dialogItem"
         android:layout_height="wrap_content"
+        android:layout_weight="16"
         android:id="@+id/callCompanyButton"/>
 
-    <Button
+
+    <TextView
         android:layout_width="match_parent"
+        style="@style/dialogItem"
         android:layout_height="wrap_content"
+        android:layout_weight="16"
+        android:background="#D3D3D3"
+        android:id="@+id/emailCompanyButton"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        style="@style/dialogItem"
+        android:layout_height="wrap_content"
+        android:layout_weight="16"
         android:id="@+id/viewCompanyInMapsButton"/>
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
+        style="@style/dialogItem"
         android:layout_height="wrap_content"
+        android:layout_weight="16"
+        android:gravity="center"
+        android:background="#D3D3D3"
         android:id="@+id/companyDetailsButton"/>
 
 </LinearLayout>

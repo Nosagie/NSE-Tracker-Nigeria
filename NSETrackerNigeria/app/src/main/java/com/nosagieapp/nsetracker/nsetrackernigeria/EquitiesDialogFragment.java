@@ -64,11 +64,6 @@ public class EquitiesDialogFragment extends DialogFragment {
         symbolTextView = (TextView)rootView.findViewById(R.id.equityDialogSymbolTextView);
         symbolTextView.setText(equityHashMap.get(AllEquitiesFragment.SYMBOL_KEY));
 
-        marketTextView = (TextView)rootView.findViewById(R.id.equityDialogMarketTextView);
-        marketTextView.setText(equityHashMap.get(AllEquitiesFragment.MARKET_KEY));
-
-        sectorTextView = (TextView)rootView.findViewById(R.id.equityDialogSectorTextView);
-        sectorTextView.setText(equityHashMap.get(AllEquitiesFragment.SECTOR_KEY));
 
         tradesTextView = (TextView)rootView.findViewById(R.id.equityDialogTradesTextView);
         String toSet = "Trade(s): " + equityHashMap.get(AllEquitiesFragment.TRADES_KEY);
@@ -79,9 +74,45 @@ public class EquitiesDialogFragment extends DialogFragment {
             toSet = "Volume: 0";
         }else {
             Double num = Double.valueOf(equityHashMap.get(AllEquitiesFragment.VOLUME_KEY));
-            toSet = "Volume : " + String.format("%,d",num.intValue()) + " units";
+            toSet = "Volume: " + String.format("%,d",num.intValue()) + " units";
         }
         volumeTextView.setText(toSet);
+
+        TextView openPriceTextView = (TextView)rootView.findViewById(R.id.equityDialogOpenPriceTextView);
+        if(equityHashMap.get(AllEquitiesFragment.OPENING_PRICE_KEY) == null || equityHashMap.get(AllEquitiesFragment.OPENING_PRICE_KEY).equals("null")){
+            openPriceTextView.setVisibility(View.GONE);
+        }else {
+            Double num = Double.valueOf(equityHashMap.get(AllEquitiesFragment.OPENING_PRICE_KEY));
+            toSet = "Open Price: " + MainContainerActivity.CURRENCY + String.format("%.2f",num);
+            openPriceTextView.setText(toSet);
+        }
+
+        TextView highPriceTextView = (TextView)rootView.findViewById(R.id.equityDialogHighPriceTextView);
+        if(equityHashMap.get(AllEquitiesFragment.HIGH_PRICE_KEY) == null || equityHashMap.get(AllEquitiesFragment.HIGH_PRICE_KEY).equals("null")){
+            highPriceTextView.setVisibility(View.GONE);
+        }else {
+            Double num = Double.valueOf(equityHashMap.get(AllEquitiesFragment.HIGH_PRICE_KEY));
+            toSet = "Day's High: " + MainContainerActivity.CURRENCY +String.format("%.2f",num);
+            highPriceTextView.setText(toSet);
+        }
+
+        TextView lowPriceTextView = (TextView)rootView.findViewById(R.id.equityDialogLowPriceTextView);
+        if(equityHashMap.get(AllEquitiesFragment.LOW_PRICE_KEY) == null || equityHashMap.get(AllEquitiesFragment.LOW_PRICE_KEY).equals("null")){
+            lowPriceTextView.setVisibility(View.GONE);
+        }else {
+            Double num = Double.valueOf(equityHashMap.get(AllEquitiesFragment.LOW_PRICE_KEY));
+            toSet = "Day's Low: " + MainContainerActivity.CURRENCY + String.format("%.2f",num);
+            lowPriceTextView.setText(toSet);
+        }
+
+        TextView dayChangeTextView = (TextView)rootView.findViewById(R.id.equityDialogChangeTextView);
+        if(equityHashMap.get(AllEquitiesFragment.CHANGE_KEY) == null || equityHashMap.get(AllEquitiesFragment.CHANGE_KEY).equals("null")){
+            dayChangeTextView.setVisibility(View.GONE);
+        }else {
+            Double num = Double.valueOf(equityHashMap.get(AllEquitiesFragment.CHANGE_KEY));
+            toSet = "Day's Change " + MainContainerActivity.CURRENCY + String.format("%.2f",num);
+            dayChangeTextView.setText(toSet);
+        }
 
         prevCloseTextView = (TextView)rootView.findViewById(R.id.prevCloseTextView);
         if(equityHashMap.get(AllEquitiesFragment.PREV_CLOSING_PRICE_KEY) == null || equityHashMap.get(AllEquitiesFragment.PREV_CLOSING_PRICE_KEY).equals("null")){

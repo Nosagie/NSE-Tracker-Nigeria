@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -70,7 +69,7 @@ public class CompanyDirectoryDialogFragment extends DialogFragment {
         companyNameLabel.setText(companyInfo.get(CompanyDirectoryFragment.COMPANYNAME_KEY));
 
         //For website
-        Button companyWebsite = (Button)rootView.findViewById(R.id.visitWebsiteButton);
+        TextView companyWebsite = (TextView)rootView.findViewById(R.id.visitWebsiteButton);
         final String website = companyInfo.get(CompanyDirectoryFragment.WEBSITE_KEY);
         if(website == null || website.equals("null")){
             companyWebsite.setVisibility(View.GONE);
@@ -91,7 +90,7 @@ public class CompanyDirectoryDialogFragment extends DialogFragment {
         });
 
         //For Telephone Call
-        Button phoneCall = (Button)rootView.findViewById(R.id.callCompanyButton);
+        TextView phoneCall = (TextView)rootView.findViewById(R.id.callCompanyButton);
         final String phoneNumber = companyInfo.get(CompanyDirectoryFragment.TELEPHONE_KEY);
         if(phoneNumber == null || phoneNumber.equals("null")){
             phoneCall.setVisibility(View.GONE);
@@ -109,7 +108,7 @@ public class CompanyDirectoryDialogFragment extends DialogFragment {
         });
 
         //View Company Address in Maps
-        final Button companyAddressButton = (Button)rootView.findViewById(R.id.viewCompanyInMapsButton);
+        final TextView companyAddressButton = (TextView)rootView.findViewById(R.id.viewCompanyInMapsButton);
         final String companyAddress = companyInfo.get(CompanyDirectoryFragment.COMPANYADDRESS_KEY);
         if(companyAddress == null || companyAddress.equals("null")){
             companyAddressButton.setVisibility(View.GONE);
@@ -132,8 +131,31 @@ public class CompanyDirectoryDialogFragment extends DialogFragment {
             }
         });
 
+        //Send Company Email
+        final TextView sendEmailButton = (TextView)rootView.findViewById(R.id.emailCompanyButton);
+        final String companyEmail = companyInfo.get(CompanyDirectoryFragment.EMAIL_KEY);
+        if(companyEmail == null || companyEmail.equals("null")){
+            sendEmailButton.setVisibility(View.GONE);
+        }else {
+            toSet = "Send Email";
+            sendEmailButton.setText(toSet);
+        }
+        sendEmailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Start Email Intent
+                Intent email = new Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto",companyEmail,null));
+                if(email.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(email);
+                }else{
+                    Log.d("No handling","No maps app");
+                    sendEmailButton.setClickable(false);
+                }
+            }
+        });
+
         //For Detailed Company Information
-        Button detailCompanyButton =  (Button)rootView.findViewById(R.id.companyDetailsButton);
+        TextView detailCompanyButton =  (TextView)rootView.findViewById(R.id.companyDetailsButton);
         detailCompanyButton.setText("Details");
         detailCompanyButton.setOnClickListener(new View.OnClickListener() {
             @Override

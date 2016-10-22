@@ -46,18 +46,21 @@ public class CompanyDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             companyToDisplay = (HashMap)getArguments().getSerializable(COMPANY_PARAM1);
-            getActivity().setTitle(companyToDisplay.get(CompanyDirectoryFragment.COMPANYNAME_KEY));
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_company_detail, container, false);
 
-        TextView test = (TextView)rootView.findViewById(R.id.detailSymbolTextView);
+        TextView test = (TextView)rootView.findViewById(R.id.detailCompanyNameTextView);
         test.setText(companyToDisplay.get(CompanyDirectoryFragment.COMPANYNAME_KEY));
+
+
+
 
 
         return rootView;
