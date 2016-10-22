@@ -24,7 +24,7 @@ public class MainContainerActivity extends AppCompatActivity {
     public static final String ALTERNATE_LIST_COLOR =  "#d9d9d9";
     public static final String NOT_AVAILABLE = "N/A";
 
-    private static final String ACTION_BAR_COLOR = "#003300";
+    public static final String ACTION_BAR_COLOR = "#003300";
 
     //Buttons
     private Button mMarketSnapshotButton, mGainersandLosersButton, mAllEquitiesButton,mCompanyDirectoryButton;

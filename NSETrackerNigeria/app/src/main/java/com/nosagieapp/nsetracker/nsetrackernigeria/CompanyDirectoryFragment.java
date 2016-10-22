@@ -78,11 +78,16 @@ public class CompanyDirectoryFragment extends Fragment {
     public static final String ANNUALLOWPRICEDATETIME = "LOW52WK_DATETIME";
 
     //HashMap to store all Equities
-    private ArrayList<HashMap<String,String>> allCompanies;
+    private static ArrayList<HashMap<String,String>> allCompanies;
 
     public CompanyDirectoryFragment() {
         // Required empty public constructor
     }
+
+    public static ArrayList getCompanyDirectory(){
+        return allCompanies;
+    }
+
 
 
 
@@ -229,20 +234,20 @@ public class CompanyDirectoryFragment extends Fragment {
 
                     }
 
-
+                if(getActivity()!=null) {
                     progressBar.setVisibility(View.GONE);
 
-                    directoryListAdapter = new directoryListAdapter(getActivity(),R.layout.directory_list_item,allCompanies);
+                    directoryListAdapter = new directoryListAdapter(getActivity(), R.layout.directory_list_item, allCompanies);
                     companyDirectoryGridView.setAdapter(directoryListAdapter);
 
                     companyDirectoryGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            //TODO:OPEN DIALOGFRAGMENT/ACTIVITY
-                            CompanyDirectoryDialogFragment directoryDialog = new CompanyDirectoryDialogFragment().newInstance(allCompanies.get(position));
-                            directoryDialog.show(getFragmentManager(),allCompanies.get(position).get(COMPANYNAME_KEY));
+                            CompanyDirectoryDialogFragment directoryDialog = new CompanyDirectoryDialogFragment().newInstance(allCompanies.get(position), position);
+                            directoryDialog.show(getFragmentManager(), allCompanies.get(position).get(COMPANYNAME_KEY));
                         }
                     });
+                }
 
 
                 }catch (JSONException e){

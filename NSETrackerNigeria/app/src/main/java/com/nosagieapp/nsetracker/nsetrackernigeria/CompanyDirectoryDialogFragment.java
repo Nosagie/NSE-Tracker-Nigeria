@@ -1,9 +1,12 @@
 package com.nosagieapp.nsetracker.nsetrackernigeria;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +24,11 @@ import java.util.HashMap;
 public class CompanyDirectoryDialogFragment extends DialogFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_DIRECTORY_COMPANY_KEY = "com.nosagie.android.nsetracker.nigeria";
+    private static final String ARG_DIRECTORY_COMPANY_POSITION = "com.nosagie.android.nsetracker.nigeria.position";
 
     private HashMap<String,String> companyInfo;
+
+    private int position;
 
 
     public CompanyDirectoryDialogFragment() {
@@ -34,10 +40,11 @@ public class CompanyDirectoryDialogFragment extends DialogFragment {
      * this fragment using the provided parameters.
      */
 
-    public static CompanyDirectoryDialogFragment newInstance(HashMap<String,String> companyInfo) {
+    public static CompanyDirectoryDialogFragment newInstance(HashMap<String,String> companyInfo,int position) {
         CompanyDirectoryDialogFragment fragment = new CompanyDirectoryDialogFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_DIRECTORY_COMPANY_KEY, companyInfo);
+        args.putInt(ARG_DIRECTORY_COMPANY_POSITION,position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,6 +54,7 @@ public class CompanyDirectoryDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             companyInfo = (HashMap)getArguments().getSerializable(ARG_DIRECTORY_COMPANY_KEY);
+            position = getArguments().getInt(ARG_DIRECTORY_COMPANY_POSITION);
         }
     }
 
@@ -63,7 +71,7 @@ public class CompanyDirectoryDialogFragment extends DialogFragment {
 
         //For website
         Button companyWebsite = (Button)rootView.findViewById(R.id.visitWebsiteButton);
-        String website = companyInfo.get(CompanyDirectoryFragment.WEBSITE_KEY);
+        final String website = companyInfo.get(CompanyDirectoryFragment.WEBSITE_KEY);
         if(website == null || website.equals("null")){
             companyWebsite.setVisibility(View.GONE);
         }else {
@@ -75,30 +83,66 @@ public class CompanyDirectoryDialogFragment extends DialogFragment {
         companyWebsite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Browser Intent
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"+website));
+                startActivity(browserIntent);
 
             }
         });
 
         //For Telephone Call
         Button phoneCall = (Button)rootView.findViewById(R.id.callCompanyButton);
-        if(website == null || website.equals("null")){
-            toSet = "Phone Unavailable";
+        final String phoneNumber = companyInfo.get(CompanyDirectoryFragment.TELEPHONE_KEY);
+        if(phoneNumber == null || phoneNumber.equals("null")){
             phoneCall.setVisibility(View.GONE);
         }else {
             toSet = "Call " + companyInfo.get(CompanyDirectoryFragment.TELEPHONE_KEY);
             phoneCall.setText(toSet);
-            //Start (implicit)intent to make user call company TODO
         }
+        phoneCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Start (implicit)intent to make user call company
+                Intent phoneCallIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel: " + phoneNumber));
+                startActivity(phoneCallIntent);
+            }
+        });
 
+        //View Company Address in Maps
+        final Button companyAddressButton = (Button)rootView.findViewById(R.id.viewCompanyInMapsButton);
+        final String companyAddress = companyInfo.get(CompanyDirectoryFragment.COMPANYADDRESS_KEY);
+        if(companyAddress == null || companyAddress.equals("null")){
+            companyAddressButton.setVisibility(View.GONE);
+        }else{
+            toSet = "View in Maps";
+            companyAddressButton.setText(toSet);
+        }
+        companyAddressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Start maps intent
+                Uri parsed = Uri.parse("geo:0,0?q=" + Uri.encode(companyAddress));
+                Intent maps = new Intent (Intent.ACTION_VIEW,parsed);
+                if(maps.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(maps);
+                }else{
+                    Log.d("No handling","No maps app");
+                    companyAddressButton.setClickable(false);
+                }
+            }
+        });
 
-        //For Detailed Company Information in Activity Pager
+        //For Detailed Company Information
         Button detailCompanyButton =  (Button)rootView.findViewById(R.id.companyDetailsButton);
         detailCompanyButton.setText("Details");
         detailCompanyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Start new Pager Activity with list
+                Intent companyList = new Intent(getActivity(),CompanyDetailSlideActivity.class);
+                companyList.putExtra(CompanyDetailSlideActivity.DIRECTORYDEATAIL_EXTRA,CompanyDirectoryFragment.getCompanyDirectory());
+                companyList.putExtra(CompanyDetailSlideActivity.DIRECTORYDEATAILPOSITION_EXTRA,position);
+                startActivity(companyList);
             }
         });
 

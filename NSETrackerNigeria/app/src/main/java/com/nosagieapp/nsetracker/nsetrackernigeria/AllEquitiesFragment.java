@@ -150,19 +150,21 @@ public class AllEquitiesFragment extends Fragment {
 
                     }
 
-                    //Update UI
+                    if(getActivity() !=null) {
+                        //Update UI
 
-                    allEquitiesListAdapter = new allEquitiesListAdapter(getActivity(),R.layout.all_equities_list_item,allEquities);
-                    allEquitiesListView.setAdapter(allEquitiesListAdapter);
+                        allEquitiesListAdapter = new allEquitiesListAdapter(getActivity(), R.layout.all_equities_list_item, allEquities);
+                        allEquitiesListView.setAdapter(allEquitiesListAdapter);
 
-                    //Open new Dialog with info if item clicked
-                    allEquitiesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            EquitiesDialogFragment equityDialog = new EquitiesDialogFragment().newInstance(allEquities.get(position));
-                            equityDialog.show(getFragmentManager(),allEquities.get(position).get(SYMBOL_KEY));
-                        }
-                    });
+                        //Open new Dialog with info if item clicked
+                        allEquitiesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                EquitiesDialogFragment equityDialog = new EquitiesDialogFragment().newInstance(allEquities.get(position));
+                                equityDialog.show(getFragmentManager(), allEquities.get(position).get(SYMBOL_KEY));
+                            }
+                        });
+                    }
 
 
                 }catch(JSONException e ){
