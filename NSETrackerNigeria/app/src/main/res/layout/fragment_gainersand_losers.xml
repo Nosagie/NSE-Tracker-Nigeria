@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
+                android:textSize="20sp"
                 style="@style/marketSnapshotTitles"
                 android:text="@string/gainersTextView"/>
 
@@ -50,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
+                android:textSize="20sp"
                 style="@style/marketSnapshotTitles"
                 android:text="@string/losersTextView"/>
 

@@ -2,6 +2,7 @@ package com.nosagieapp.nsetracker.nsetrackernigeria;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -171,14 +172,11 @@ public class GainersandLosersFragment extends Fragment {
                     }
 
                     //Initialize and set list adapters
-                    gainersListAdapter = new GainersAndLosersAdapter(getActivity(),android.R.layout.simple_list_item_1,topGainers);
+                    gainersListAdapter = new GainersAndLosersAdapter(getActivity(),R.layout.gainers_and_losers_list_item,topGainers,true);
                     gainersListView.setAdapter(gainersListAdapter);
-                    losersListAdapter = new GainersAndLosersAdapter(getActivity(),R.layout.gainers_and_losers_list_item,topLosers);
+                    losersListAdapter = new GainersAndLosersAdapter(getActivity(),R.layout.gainers_and_losers_list_item,topLosers,false);
                     losersListView.setAdapter(losersListAdapter);
 
-
-
-                    gainersAndLosersErrorTextView.setText(topGainers.get(0).get(SYMBOL_KEY)+ "\n\n" + topLosers.get(0).get(SYMBOL_KEY));
 
                 }catch (JSONException e){
                     Log.e(MainContainerActivity.LOG_TAG, MainContainerActivity.PARSE_ERROR_STRING + MainContainerActivity.DEVELOPER_EMAIL);
@@ -190,9 +188,9 @@ public class GainersandLosersFragment extends Fragment {
     }
 
     private class GainersAndLosersAdapter extends ArrayAdapter{
-            private final Context context;
+        private final Context context;
         private final ArrayList<HashMap<String,String>> values;
-
+        private  Boolean isGainer;
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -201,17 +199,40 @@ public class GainersandLosersFragment extends Fragment {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rowView = inflater.inflate(R.layout.gainers_and_losers_list_item, null);
 
+
             TextView symbol = (TextView)rowView.findViewById(R.id.gainersandLosersSymbolListView);
             symbol.setText(values.get(position).get(SYMBOL_KEY));
+            TextView prevPrice = (TextView)rowView.findViewById(R.id.prevPriceListText);
+            prevPrice.setText(values.get(position).get(LAST_CLOSE_KEY));
+            TextView perChange = (TextView)rowView.findViewById(R.id.percChangeListText);
+            perChange.setText(values.get(position).get(PERCENTAGE_CHANGE_KEY));
+
+            //Check if gainer or losers list and set color
+            if(isGainer){
+                perChange.setTextColor(Color.parseColor("#009933"));
+            }else{
+                perChange.setTextColor(Color.parseColor("#e60000"));
+            }
+
+            TextView todayPrice = (TextView)rowView.findViewById(R.id.todayPriceListText);
+            todayPrice.setText(values.get(position).get(TODAYS_CLOSE_KEY));
+
+            //If position is even
+            if(position % 2 == 0){
+                LinearLayout thisLinearLayout = (LinearLayout)rowView.findViewById(R.id.gainersandLosersListParentLinearLayout);
+                thisLinearLayout.setBackgroundColor(Color.parseColor(MainContainerActivity.ALTERNATE_LIST_COLOR));
+            }
+
 
             return  rowView;
 
         }
 
-        public GainersAndLosersAdapter(Context context,int layout, ArrayList<HashMap<String,String>> values) {
+        public GainersAndLosersAdapter(Context context,int layout, ArrayList<HashMap<String,String>> values,Boolean isgainer) {
             super(context, layout, values);
             this.context = context;
             this.values = values;
+            this.isGainer = isgainer;
         }
 
     }

@@ -2,20 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/gainersandLosersListParentLinearLayout"
     android:padding="4dp">
 
     <TextView
         android:layout_width="0dp"
+        android:layout_weight="32"
         android:layout_height="match_parent"
-        android:layout_weight="33"
         style="@style/gainersAndLosersListTexts"
         android:id="@+id/gainersandLosersSymbolListView"/>
-
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="33"
+        android:layout_weight="23"
+        style="@style/listText"
+        android:id="@+id/prevPriceListText"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="23"
+        style="@style/listText"
+        android:id="@+id/todayPriceListText"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="22"
+        style="@style/listText"
+        android:id="@+id/percChangeListText"
         />
 
 

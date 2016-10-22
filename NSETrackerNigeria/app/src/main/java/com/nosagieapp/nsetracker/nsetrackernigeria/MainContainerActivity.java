@@ -21,6 +21,7 @@ public class MainContainerActivity extends AppCompatActivity {
     public static final String API_CALL_ERROR_STRING = "NSE site is down, retry later";
     public static final String PARSE_ERROR_STRING = "Error Reading Data, contact developer ";
     public static final String CURRENCY = "₦";
+    public static final String ALTERNATE_LIST_COLOR =  "#d9d9d9";
 
     private static final String ACTION_BAR_COLOR = "#003300";
 

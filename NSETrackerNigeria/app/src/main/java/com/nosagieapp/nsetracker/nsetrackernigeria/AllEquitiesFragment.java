@@ -1,14 +1,18 @@
 package com.nosagieapp.nsetracker.nsetrackernigeria;
 
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -23,11 +27,14 @@ import java.util.HashMap;
 public class AllEquitiesFragment extends Fragment {
 
     private static TextView allEquitiesErrorTextView;
+    private static ListView allEquitiesListView;
 
     private static ProgressBar progressBar;
 
     //HashMap to store all Equities
     private ArrayList<HashMap<String,String>> allEquities;
+
+    private ArrayAdapter<HashMap<String,String>> allEquitiesListAdapter;
 
     //Keys for JSON API Call
     private final String SYMBOL_KEY = "Symbol";
@@ -68,7 +75,8 @@ public class AllEquitiesFragment extends Fragment {
         progressBar = (ProgressBar)rootView.findViewById(R.id.allEquitiesProgressBar);
 
         allEquitiesErrorTextView = (TextView)rootView.findViewById(R.id.allEquitiesErrorTextView);
-        allEquitiesErrorTextView.setMovementMethod(new ScrollingMovementMethod());
+
+        allEquitiesListView = (ListView)rootView.findViewById(R.id.allEquitiesListView);
 
         return rootView;
     }
@@ -85,6 +93,7 @@ public class AllEquitiesFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             progressBar.setVisibility(View.GONE);
+            allEquitiesErrorTextView.setVisibility(View.GONE);
 
             if(s == null || s.equals("null")){
                 allEquitiesErrorTextView.setText(MainContainerActivity.API_CALL_ERROR_STRING);
@@ -138,7 +147,10 @@ public class AllEquitiesFragment extends Fragment {
 
                     }
 
-                    allEquitiesErrorTextView.setText(allEquities.get(0).get(SYMBOL_KEY) + "\n\n" + allEquities.get(5).get(SYMBOL_KEY));
+                    //Update UI
+
+                    allEquitiesListAdapter = new allEquitiesListAdapter(getActivity(),R.layout.all_equities_list_item,allEquities);
+                    allEquitiesListView.setAdapter(allEquitiesListAdapter);
 
 
                 }catch(JSONException e ){
@@ -148,6 +160,45 @@ public class AllEquitiesFragment extends Fragment {
 
             }
         }
+    }
+
+    private class allEquitiesListAdapter extends ArrayAdapter<HashMap<String,String>> {
+
+        private ArrayList<HashMap<String,String>> values;
+        private Context context;
+
+        public allEquitiesListAdapter(Context context, int resource,ArrayList<HashMap<String,String>> values) {
+            super(context, resource,values);
+            this.values = values;
+            this.context = context;
+        }
+
+        @Override
+        public View getView(int position,View convertView,ViewGroup parent){
+            //set up custom rowview
+            View rowView = convertView;
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            rowView = inflater.inflate(R.layout.all_equities_list_item, null);
+
+
+            TextView symbolTextView = (TextView)rowView.findViewById(R.id.allEquitiesSymbolListTextView);
+            symbolTextView.setText(values.get(position).get(SYMBOL_KEY));
+
+            TextView marketTextView = (TextView)rowView.findViewById(R.id.allEquitiesMarketTextView);
+            marketTextView.setText(values.get(position).get(MARKET_KEY));
+
+            TextView sectorTextView = (TextView)rowView.findViewById(R.id.allEquitiesSectorTextView);
+            sectorTextView.setText(values.get(position).get(SECTOR_KEY));
+
+            //If position is even
+            if(position % 2 == 0){
+                LinearLayout thisLinearLayout = (LinearLayout)rowView.findViewById(R.id.allEquitiesListParentLinearLayout);
+                thisLinearLayout.setBackgroundColor(Color.parseColor(MainContainerActivity.ALTERNATE_LIST_COLOR));
+            }
+
+            return rowView;
+        }
+
     }
 
 }
