@@ -155,7 +155,7 @@ public class AllEquitiesFragment extends Fragment {
                     allEquitiesListAdapter = new allEquitiesListAdapter(getActivity(),R.layout.all_equities_list_item,allEquities);
                     allEquitiesListView.setAdapter(allEquitiesListAdapter);
 
-                    //Open new Detail Activity if item clicked
+                    //Open new Dialog with info if item clicked
                     allEquitiesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

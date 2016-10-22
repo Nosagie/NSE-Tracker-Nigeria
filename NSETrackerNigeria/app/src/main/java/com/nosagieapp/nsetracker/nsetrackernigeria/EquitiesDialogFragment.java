@@ -23,7 +23,6 @@ public class EquitiesDialogFragment extends DialogFragment {
     private static final String ARG_EQUITY_KEY = "com.nsetracker.equitydialog.nigeria";
 
 
-    // TODO: Rename and change types of parameters
     private HashMap<String,String> equityHashMap;
 
 
@@ -37,7 +36,6 @@ public class EquitiesDialogFragment extends DialogFragment {
      *
      * @return A new instance of fragment EquitiesDialogFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static EquitiesDialogFragment newInstance(HashMap<String,String> hashMap) {
         EquitiesDialogFragment fragment = new EquitiesDialogFragment();
         Bundle args = new Bundle();
