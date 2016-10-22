@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,20 +38,20 @@ public class AllEquitiesFragment extends Fragment {
     private ArrayAdapter<HashMap<String,String>> allEquitiesListAdapter;
 
     //Keys for JSON API Call
-    private final String SYMBOL_KEY = "Symbol";
-    private final String PREV_CLOSING_PRICE_KEY = "PrevClosingPrice";
-    private final String OPENING_PRICE_KEY = "OpeningPrice";
-    private final String HIGH_PRICE_KEY = "HighPrice";
-    private final String LOW_PRICE_KEY = "LowPrice";
-    private final String CLOSE_PRICE_KEY = "ClosePrice";
-    private final String CHANGE_KEY = "Change";
-    private final String PERC_CHANGE_KEY = "PercChange";
-    private final String TRADES_KEY = "Trades";
-    private final String VOLUME_KEY = "Volume";
-    private final String VALUE_KEY = "Value";
-    private final String MARKET_KEY = "Market";
-    private final String SECTOR_KEY = "Sector";
-    private final String COMPANY2_KEY = "Company2"; //same as symbol but returned with API call
+    public static final String SYMBOL_KEY = "Symbol";
+    public static final String PREV_CLOSING_PRICE_KEY = "PrevClosingPrice";
+    public static final String OPENING_PRICE_KEY = "OpeningPrice";
+    public static final String HIGH_PRICE_KEY = "HighPrice";
+    public static final String LOW_PRICE_KEY = "LowPrice";
+    public static final String CLOSE_PRICE_KEY = "ClosePrice";
+    public static final String CHANGE_KEY = "Change";
+    public static final String PERC_CHANGE_KEY = "PercChange";
+    public static final String TRADES_KEY = "Trades";
+    public static final String VOLUME_KEY = "Volume";
+    public static final String VALUE_KEY = "Value";
+    public static final String MARKET_KEY = "Market";
+    public static final String SECTOR_KEY = "Sector";
+    public static final String COMPANY2_KEY = "Company2"; //same as symbol but returned with API call
 
     public AllEquitiesFragment() {
         // Required empty public constructor
@@ -107,7 +106,7 @@ public class AllEquitiesFragment extends Fragment {
                     JSONObject jsonSymbolToAdd;
                     HashMap<String, String> symbolToAdd;
                     String symbol,market,sector,company2;
-                    String prevClosingPrice,openingPrice,highPrice,lowPrice,change,percChange,value,trades,volume;;
+                    String prevClosingPrice,openingPrice,highPrice,lowPrice,change,percChange,value,trades,volume,closePrice;
 
                     for (int i = 0 ; i < allEquitiesJSON.length();i++){
                         jsonSymbolToAdd = allEquitiesJSON.getJSONObject(i);
@@ -126,6 +125,7 @@ public class AllEquitiesFragment extends Fragment {
                         change = jsonSymbolToAdd.getString(CHANGE_KEY);
                         percChange = jsonSymbolToAdd.getString(PERC_CHANGE_KEY);
                         value = jsonSymbolToAdd.getString(VALUE_KEY);
+                        closePrice = jsonSymbolToAdd.getString(CLOSE_PRICE_KEY);
 
                         //Format Integers and Doubles
 
@@ -144,6 +144,7 @@ public class AllEquitiesFragment extends Fragment {
                         symbolToAdd.put(CHANGE_KEY,change.toString());
                         symbolToAdd.put(PERC_CHANGE_KEY,percChange.toString());
                         symbolToAdd.put(VALUE_KEY,value.toString());
+                        symbolToAdd.put(CLOSE_PRICE_KEY,closePrice.toString());
 
                         allEquities.add(symbolToAdd);
 
@@ -158,10 +159,8 @@ public class AllEquitiesFragment extends Fragment {
                     allEquitiesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                            //TODO:UPDATE TO SHOW NEW ACTIVITY
-                            Toast.makeText(getActivity(),allEquities.get(position).get(SYMBOL_KEY),Toast.LENGTH_SHORT).show();
-
+                            EquitiesDialogFragment equityDialog = new EquitiesDialogFragment().newInstance(allEquities.get(position));
+                            equityDialog.show(getFragmentManager(),allEquities.get(position).get(SYMBOL_KEY));
                         }
                     });
 

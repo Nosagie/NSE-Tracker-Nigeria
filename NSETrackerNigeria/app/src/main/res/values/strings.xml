@@ -25,4 +25,11 @@
 
     <!--For Ads-->
     <string name="banner_add_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--For EquitiesDialog Fragment-->
+    <string name="marketlabel">Market</string>
+    <string name="sectorlabel">Sector</string>
 </resources>
