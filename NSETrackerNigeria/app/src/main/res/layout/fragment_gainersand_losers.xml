@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.GainersandLosersFragment">
 
@@ -16,7 +17,65 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
         android:id="@+id/gainersloserserrorTextView"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/gainersAndLosersContent"
+        >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:textSize="20sp"
+                style="@style/marketSnapshotTitles"
+                android:text="@string/gainersTextView"/>
+
+            <ListView
+                android:layout_weight="30"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/gainersListView"
+              />
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:textSize="20sp"
+                style="@style/marketSnapshotTitles"
+                android:text="@string/losersTextView"/>
+
+            <ListView
+                android:layout_weight="30"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/losersListView"
+                />
+
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_weight="40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="15dp"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_add_unit_id">
+            </com.google.android.gms.ads.AdView>
+
+
+    </LinearLayout>
 
 </FrameLayout>
