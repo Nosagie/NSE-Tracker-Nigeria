@@ -1,6 +1,7 @@
 package com.nosagieapp.nsetracker.nsetrackernigeria;
 
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,8 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +31,10 @@ import java.util.HashMap;
 public class CompanyDirectoryFragment extends Fragment {
 
     private static TextView companyDirectoryErrorTextView;
+
+    private static GridView companyDirectoryGridView;
+
+    private static ArrayAdapter<HashMap<String,String>> directoryListAdapter;
 
     private static ProgressBar progressBar;
 
@@ -93,6 +102,8 @@ public class CompanyDirectoryFragment extends Fragment {
 
         progressBar = (ProgressBar)rootView.findViewById(R.id.companyDirectoryProgressBar);
 
+        companyDirectoryGridView = (GridView)rootView.findViewById(R.id.directoryGridView);
+
         companyDirectoryErrorTextView = (TextView)rootView.findViewById(R.id.companyDirectoryErrorTextView);
         companyDirectoryErrorTextView.setMovementMethod(new ScrollingMovementMethod());
 
@@ -113,11 +124,10 @@ public class CompanyDirectoryFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            progressBar.setVisibility(View.GONE);
-
             if(s == null | s.equals("null")){
                 companyDirectoryErrorTextView.setText(MainContainerActivity.API_CALL_ERROR_STRING);
             }else{
+                companyDirectoryErrorTextView.setVisibility(View.GONE);
 
                 try{
 
@@ -220,9 +230,19 @@ public class CompanyDirectoryFragment extends Fragment {
 
                     }
 
-                    //TODO:UPDATE UI
-                    companyDirectoryErrorTextView.setText(allCompanies.get(0).get(SYMBOL_KEY) + "\n\n" + allCompanies.get(5).get(SYMBOL_KEY) + "\n\n" + allCompanies.get(15).get(YIELD_KEY));
 
+                    progressBar.setVisibility(View.GONE);
+
+                    directoryListAdapter = new directoryListAdapter(getActivity(),R.layout.directory_list_item,allCompanies);
+                    companyDirectoryGridView.setAdapter(directoryListAdapter);
+
+                    companyDirectoryGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            //TODO:OPEN DIALOGFRAGMENT/ACTIVITY
+                            Toast.makeText(getActivity(),allCompanies.get(position).get(COMPANYNAME_KEY),Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
 
                 }catch (JSONException e){
@@ -232,6 +252,30 @@ public class CompanyDirectoryFragment extends Fragment {
             }
 
 
+        }
+    }
+
+    private class directoryListAdapter extends ArrayAdapter<HashMap<String,String>>{
+
+        private ArrayList<HashMap<String,String>> values;
+        private Context context;
+
+        public directoryListAdapter(Context context, int resource, ArrayList<HashMap<String,String>> values) {
+            super(context, resource, values);
+            this.context = context;
+            this.values = values;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(R.layout.directory_list_item, null);
+
+            TextView companyNameTextView = (TextView)rowView.findViewById(R.id.directoryListCompanyName);
+            companyNameTextView.setText(values.get(position).get(COMPANYNAME_KEY));
+
+
+            return rowView;
         }
     }
 

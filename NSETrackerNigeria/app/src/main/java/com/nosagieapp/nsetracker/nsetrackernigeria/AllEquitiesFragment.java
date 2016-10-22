@@ -10,11 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -152,6 +154,17 @@ public class AllEquitiesFragment extends Fragment {
                     allEquitiesListAdapter = new allEquitiesListAdapter(getActivity(),R.layout.all_equities_list_item,allEquities);
                     allEquitiesListView.setAdapter(allEquitiesListAdapter);
 
+                    //Open new Detail Activity if item clicked
+                    allEquitiesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            //TODO:UPDATE TO SHOW NEW ACTIVITY
+                            Toast.makeText(getActivity(),allEquities.get(position).get(SYMBOL_KEY),Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
 
                 }catch(JSONException e ){
                     Log.e(MainContainerActivity.LOG_TAG, e.toString() + " " + MainContainerActivity.PARSE_ERROR_STRING + MainContainerActivity.DEVELOPER_EMAIL);
@@ -198,6 +211,8 @@ public class AllEquitiesFragment extends Fragment {
 
             return rowView;
         }
+
+
 
     }
 

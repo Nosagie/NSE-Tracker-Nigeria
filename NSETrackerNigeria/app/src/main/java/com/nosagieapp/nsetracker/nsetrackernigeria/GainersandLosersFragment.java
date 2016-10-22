@@ -108,7 +108,6 @@ public class GainersandLosersFragment extends Fragment {
             }
             else {
                 gainersAndLosersErrorTextView.setVisibility(View.GONE);
-                gainersAndLosersLinearLayout.setVisibility(View.VISIBLE);
 
                 String gainers = results[0].substring(4);
                 String losers = results[1].substring(4);
@@ -171,11 +170,14 @@ public class GainersandLosersFragment extends Fragment {
                         topLosers.add(symbolToAdd);
                     }
 
+
                     //Initialize and set list adapters
                     gainersListAdapter = new GainersAndLosersAdapter(getActivity(),R.layout.gainers_and_losers_list_item,topGainers,true);
                     gainersListView.setAdapter(gainersListAdapter);
                     losersListAdapter = new GainersAndLosersAdapter(getActivity(),R.layout.gainers_and_losers_list_item,topLosers,false);
                     losersListView.setAdapter(losersListAdapter);
+
+                    gainersAndLosersLinearLayout.setVisibility(View.VISIBLE);
 
 
                 }catch (JSONException e){
