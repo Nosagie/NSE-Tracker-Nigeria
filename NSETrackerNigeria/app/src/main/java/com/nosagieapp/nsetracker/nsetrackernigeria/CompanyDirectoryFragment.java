@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -188,6 +189,7 @@ public class CompanyDirectoryFragment extends Fragment {
                         annualLowPrice = companyToAddJSON.getString(ANNUALLOWPRICE_KEY);
                         annualLowPriceDateTime = companyToAddJSON.getString(ANNUALLOWPRICEDATETIME);
 
+                        //TODO:ADD HTML.FROMHTM().TOSTRING FOR STRING METHODS
                         //Add to HashMap and Arraylist
                         companyToAdd = new HashMap<>();
                         companyToAdd.put(INTERNATIONALSECIN_KEY,internationalSECIN);
@@ -220,8 +222,8 @@ public class CompanyDirectoryFragment extends Fragment {
                         companyToAdd.put(FAX_KEY,fax);
                         companyToAdd.put(EMAIL_KEY,email);
                         companyToAdd.put(SECRETARY_KEY,secretary);
-                        companyToAdd.put(AUDITOR_KEY,auditor);
-                        companyToAdd.put(REGISTRAR_KEY,registrar);
+                        companyToAdd.put(AUDITOR_KEY,Html.fromHtml(auditor).toString());
+                        companyToAdd.put(REGISTRAR_KEY, Html.fromHtml(registrar).toString());
                         companyToAdd.put(BOARDOFDIRECTORS_KEY,boardOfDirectors);
                         companyToAdd.put(ID_KEY,id);
                         companyToAdd.put(ANNUALHIGHPRICE_KEY,annualHighPrice);

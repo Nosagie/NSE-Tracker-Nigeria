@@ -14,8 +14,8 @@
             android:id="@+id/companyDirectoryProgressBar"
             android:padding="4dp"
             tools:targetApi="lollipop"
-            android:layout_gravity=""
-            android:gravity="center"/>
+            android:layout_gravity="center_horizontal"
+            android:gravity="center" />
 
 
     <TextView
