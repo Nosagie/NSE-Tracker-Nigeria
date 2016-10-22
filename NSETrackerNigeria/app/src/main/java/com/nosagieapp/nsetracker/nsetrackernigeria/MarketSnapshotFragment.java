@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -51,10 +52,15 @@ public class MarketSnapshotFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Initialize Adds TODO:UPDATE ID IN STRING FILE AND HERE
-        MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+        if(MainContainerActivity.isConnectedToInternet(getActivity())) {
 
-        new fetchMarketSnapshot().execute();
+            //Initialize Adds TODO:UPDATE ID IN STRING FILE AND HERE
+            MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+
+            new fetchMarketSnapshot().execute();
+        }else{
+            Toast.makeText(getActivity(), MainContainerActivity.CONNECTTOINTERNET, Toast.LENGTH_LONG).show();
+        }
 
     }
 

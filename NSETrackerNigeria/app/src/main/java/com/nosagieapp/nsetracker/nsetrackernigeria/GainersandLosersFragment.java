@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -63,10 +64,13 @@ public class GainersandLosersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Initialize Adds TODO:UPDATE ID IN STRING FILE AND HERE
-        MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
-
-        new fetchGainersandLosersTask().execute();
+        if(MainContainerActivity.isConnectedToInternet(getActivity())) {
+            //Initialize Adds TODO:UPDATE ID IN STRING FILE AND HERE
+            MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+            new fetchGainersandLosersTask().execute();
+        }else {
+            Toast.makeText(getActivity(), MainContainerActivity.CONNECTTOINTERNET, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

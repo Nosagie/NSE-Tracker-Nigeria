@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,7 +97,11 @@ public class CompanyDirectoryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new fetchCompanyDirectory().execute();
+        if(MainContainerActivity.isConnectedToInternet(getActivity())) {
+            new fetchCompanyDirectory().execute();
+        }else{
+            Toast.makeText(getActivity(),MainContainerActivity.CONNECTTOINTERNET,Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

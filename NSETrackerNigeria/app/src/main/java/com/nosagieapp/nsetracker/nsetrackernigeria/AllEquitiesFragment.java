@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,7 +64,11 @@ public class AllEquitiesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new fetchAllEquitiesTask().execute();
+        if(MainContainerActivity.isConnectedToInternet(getActivity())) {
+            new fetchAllEquitiesTask().execute();
+        }else{
+            Toast.makeText(getActivity(), MainContainerActivity.CONNECTTOINTERNET, Toast.LENGTH_LONG).show();
+        }
 
     }
 
