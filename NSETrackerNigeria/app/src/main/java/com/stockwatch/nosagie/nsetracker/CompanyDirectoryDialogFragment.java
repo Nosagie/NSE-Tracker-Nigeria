@@ -1,4 +1,4 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 
 import android.content.Intent;
@@ -74,7 +74,7 @@ public class CompanyDirectoryDialogFragment extends DialogFragment {
         if(website == null || website.equals("null")){
             companyWebsite.setVisibility(View.GONE);
         }else {
-            //Start (implicit)intent to make visit website TODO
+            //Start (implicit)intent to make visit website
             toSet = "Visit Website";
             companyWebsite.setText(toSet);
 

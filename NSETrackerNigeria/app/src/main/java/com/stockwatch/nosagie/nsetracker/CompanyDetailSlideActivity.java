@@ -1,4 +1,4 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -30,7 +30,6 @@ public class CompanyDetailSlideActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO error handling
         directory = (ArrayList<HashMap<String,String>>)getIntent().getSerializableExtra(DIRECTORYDEATAIL_EXTRA);
         companyIndex = getIntent().getIntExtra(DIRECTORYDEATAILPOSITION_EXTRA, 0);
 

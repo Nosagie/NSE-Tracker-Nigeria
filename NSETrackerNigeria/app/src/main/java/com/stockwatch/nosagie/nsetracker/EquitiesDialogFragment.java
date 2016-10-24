@@ -1,4 +1,4 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 
 import android.os.Bundle;
@@ -117,6 +117,7 @@ public class EquitiesDialogFragment extends DialogFragment {
         prevCloseTextView = (TextView)rootView.findViewById(R.id.prevCloseTextView);
         if(equityHashMap.get(AllEquitiesFragment.PREV_CLOSING_PRICE_KEY) == null || equityHashMap.get(AllEquitiesFragment.PREV_CLOSING_PRICE_KEY).equals("null")){
             toSet = "Prev Close Price Not Available";
+            prevCloseTextView.setVisibility(View.GONE);
         }else {
             Double num = Double.valueOf(equityHashMap.get(AllEquitiesFragment.PREV_CLOSING_PRICE_KEY));
             toSet = "Prev Close: " + MainContainerActivity.CURRENCY + String.format("%.2f",num);
@@ -125,8 +126,7 @@ public class EquitiesDialogFragment extends DialogFragment {
 
         currentPriceTextView = (TextView)rootView.findViewById(R.id.currentPriceTextView);
         if(equityHashMap.get(AllEquitiesFragment.CLOSE_PRICE_KEY) == null || equityHashMap.get(AllEquitiesFragment.CLOSE_PRICE_KEY).equals("null")){
-            Double num = Double.valueOf(equityHashMap.get(AllEquitiesFragment.CLOSE_PRICE_KEY));
-            toSet = "Today's Close: " + MainContainerActivity.CURRENCY + String.format("%.2f",num);
+            currentPriceTextView.setVisibility(View.GONE);
         }else {
             Double num = Double.valueOf(equityHashMap.get(AllEquitiesFragment.CLOSE_PRICE_KEY));
             toSet = "Today's Close " + MainContainerActivity.CURRENCY + String.format("%.2f",num);

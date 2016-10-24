@@ -1,4 +1,4 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 
 import android.content.Context;
@@ -65,8 +65,8 @@ public class GainersandLosersFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if(MainContainerActivity.isConnectedToInternet(getActivity())) {
-            //Initialize Adds TODO:UPDATE ID IN STRING FILE AND HERE
-            MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+            //Initialize Adds
+            MobileAds.initialize(getActivity().getApplicationContext(), MainContainerActivity.ADMOBSAPPID);
             new fetchGainersandLosersTask().execute();
         }else {
             Toast.makeText(getActivity(), MainContainerActivity.CONNECTTOINTERNET, Toast.LENGTH_LONG).show();

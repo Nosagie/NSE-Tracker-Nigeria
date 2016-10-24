@@ -17,6 +17,7 @@
     <string name="tradeValueTitle">Value:</string>
     <string name="tradeVolumeTitle">Volume:</string>
     <string name="marketCapTitle">Cap: </string>
+    <string name="marketStatusTitle">Status: </string>
 
     <!--For GainersandLosersFragment Text-->
     <string name="gainersTextView">Gainers</string>
@@ -24,10 +25,10 @@
 
 
     <!--For Ads-->
-    <string name="banner_add_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="marketsnapshot_add_unit_id">ca-app-pub-1375868733132001/9955559774</string>
+    <string name="gainersandlosers_add_unit_id">ca-app-pub-1375868733132001/2432292971</string>
+    <string name="companyDetail_add_unit_id">ca-app-pub-1375868733132001/3909026172</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--For EquitiesDialog Fragment-->
     <string name="marketlabel">Market</string>

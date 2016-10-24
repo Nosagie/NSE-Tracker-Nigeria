@@ -1,4 +1,4 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 
 import android.content.Context;

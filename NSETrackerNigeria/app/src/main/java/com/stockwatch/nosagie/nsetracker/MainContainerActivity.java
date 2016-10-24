@@ -1,4 +1,4 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -25,6 +25,7 @@ public class MainContainerActivity extends AppCompatActivity {
     public static final String ALTERNATE_LIST_COLOR =  "#d9d9d9";
     public static final String NOT_AVAILABLE = "N/A";
     public static final String CONNECTTOINTERNET = "Please Check your Internet Connection, and retry";
+    public static final String ADMOBSAPPID = "ca-app-pub-1375868733132001~7002093374";
 
     //Titles
     private static final String MARKETSNAPSHOTTITLE = "Market Snapshot";
@@ -44,8 +45,6 @@ public class MainContainerActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(ACTION_BAR_COLOR)));
         setSupportActionBar(toolbar);
-
-        //TODO:Check if WIFI is On/Connected
 
          // Add the fragment to the 'fragment_container' FrameLayout
          getSupportFragmentManager().beginTransaction()
@@ -122,9 +121,9 @@ public class MainContainerActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

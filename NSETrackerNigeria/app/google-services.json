@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "682474648646",
-    "firebase_url": "https://nse-tracker-nigeria.firebaseio.com",
-    "project_id": "nse-tracker-nigeria",
-    "storage_bucket": "nse-tracker-nigeria.appspot.com"
+    "project_number": "319042006258",
+    "firebase_url": "https://nse-tracker-nigeria-de89c.firebaseio.com",
+    "project_id": "nse-tracker-nigeria-de89c",
+    "storage_bucket": "nse-tracker-nigeria-de89c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:682474648646:android:efc917e24804b766",
+        "mobilesdk_app_id": "1:319042006258:android:78dc22f68feda0f3",
         "android_client_info": {
-          "package_name": "com.nosagieapp.nsetracker.nsetrackernigeria"
+          "package_name": "com.stockwatch.nosagie.nsetracker"
         }
       },
       "oauth_client": [
         {
-          "client_id": "682474648646-h3um2k74phn1u1ckcbdbrdhtn11p60e7.apps.googleusercontent.com",
+          "client_id": "319042006258-uqr8579aoud0dk60lv5rcini8alub4rg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAaAbxrE9PH2qlKu0koAbSrtYhh4mtYZ-Q"
+          "current_key": "AIzaSyBrOzLCTSK0Q8vXJgL8bLLDT3en3QcbTbQ"
         }
       ],
       "services": {

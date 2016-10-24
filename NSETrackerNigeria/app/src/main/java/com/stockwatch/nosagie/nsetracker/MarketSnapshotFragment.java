@@ -1,6 +1,7 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,7 +31,7 @@ import org.json.JSONObject;
 public class MarketSnapshotFragment extends Fragment {
 
     private static TextView marketSnapshotErrorTextView,allShareIndexTextView,marketCapTextView;
-    private static TextView totalTradesTextView,tradeValueTextView,tradeVolumeTextView;
+    private static TextView totalTradesTextView,tradeValueTextView,tradeVolumeTextView,marketStatusTextView;
 
     private static LinearLayout marketSnapshotContentLinearLayout;
 
@@ -41,6 +43,12 @@ public class MarketSnapshotFragment extends Fragment {
     private final String VOLUME_KEY = "VOLUME";
     private final String VALUE_KEY = "VALUE";
     private final String MARKET_CAP_KEY = "CAP";
+    private final String MARKET_STATUS_KEY = "MktStatus";
+    private final String END_OF_DAY_VALUE = "ENDOFDAY";
+    private final String MARKET_OPEN = "OPEN";
+    private final String MARKET_CLOSED = "CLOSED";
+
+    private String marketStatus;
 
 
     public MarketSnapshotFragment() {
@@ -54,9 +62,9 @@ public class MarketSnapshotFragment extends Fragment {
 
         if(MainContainerActivity.isConnectedToInternet(getActivity())) {
 
-            //Initialize Adds TODO:UPDATE ID IN STRING FILE AND HERE
-            MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
-
+            //Initialize Adds
+            MobileAds.initialize(getActivity().getApplicationContext(), MainContainerActivity.ADMOBSAPPID);
+            new fetchMarketStatus().execute();
             new fetchMarketSnapshot().execute();
         }else{
             Toast.makeText(getActivity(), MainContainerActivity.CONNECTTOINTERNET, Toast.LENGTH_LONG).show();
@@ -78,6 +86,7 @@ public class MarketSnapshotFragment extends Fragment {
         tradeValueTextView = (TextView)rootView.findViewById(R.id.tradeValueTextView);
         tradeVolumeTextView = (TextView)rootView.findViewById(R.id.tradeVolumeTextView);
         marketCapTextView = (TextView)rootView.findViewById(R.id.marketCapTextView);
+        marketStatusTextView = (TextView)rootView.findViewById(R.id.marketStatusTextView);
         marketSnapshotContentLinearLayout = (LinearLayout)rootView.findViewById(R.id.mrktSnapshotContent);
         marketSnapshotContentLinearLayout.setVisibility(View.GONE);
 
@@ -88,6 +97,46 @@ public class MarketSnapshotFragment extends Fragment {
 
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        new fetchMarketStatus().execute();
+        new fetchMarketSnapshot().execute();
+    }
+
+    //get market status
+    private class fetchMarketStatus extends  AsyncTask<String,Integer,String>{
+        @Override
+        protected String doInBackground(String... params) {
+            String unparsedJSON = Fetcher.fetchMarketStatus();
+
+            return unparsedJSON.substring(4); //removes "null" at the beginning of resulting string
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            if(s == null || s.equals("null")){
+                //Show Error to User
+                marketSnapshotErrorTextView.setText(MainContainerActivity.API_CALL_ERROR_STRING);
+            }else {
+
+                try {
+                    //Parse JSON
+                    JSONArray unparsedSnapshot = new JSONArray(s);
+                    JSONObject lineOfData = unparsedSnapshot.getJSONObject(0);
+                    marketStatus = lineOfData.getString(MARKET_STATUS_KEY);
+
+
+                }catch (JSONException e){
+                    Log.e(MainContainerActivity.LOG_TAG,MainContainerActivity.PARSE_ERROR_STRING + MainContainerActivity.DEVELOPER_EMAIL);
+                    marketSnapshotErrorTextView.setText(MainContainerActivity.PARSE_ERROR_STRING);
+                }
+            }
+        }
     }
 
     private class fetchMarketSnapshot extends AsyncTask<String,Integer,String>{
@@ -130,6 +179,15 @@ public class MarketSnapshotFragment extends Fragment {
                     totalTradesTextView.setText(String.format("%,d", deals));
                     tradeVolumeTextView.setText(String.format("%,d",volume));
                     tradeValueTextView.setText(MainContainerActivity.CURRENCY + String.format("%,d",value));
+
+                    //Format Strings Appropriately
+                    if(marketStatus.equals(END_OF_DAY_VALUE)){
+                        marketStatusTextView.setText(MARKET_CLOSED);
+                        marketStatusTextView.setTextColor(Color.parseColor("#b30000"));
+                    }else {
+                        marketStatusTextView.setText(MARKET_OPEN);
+                        marketStatusTextView.setTextColor(Color.parseColor("#006600"));
+                    }
 
 
                 }catch (JSONException e){

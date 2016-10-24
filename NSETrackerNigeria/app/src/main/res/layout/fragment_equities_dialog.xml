@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="2dp"
     android:padding="5dp"
-    tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.EquitiesDialogFragment">
+    tools:context="com.stockwatch.nosagie.nsetracker.EquitiesDialogFragment">
 
 
     <TextView

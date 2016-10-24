@@ -1,4 +1,4 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 
 import android.os.Bundle;
@@ -52,8 +52,8 @@ public class CompanyDetailFragment extends Fragment {
             companyToDisplay = (HashMap)getArguments().getSerializable(COMPANY_PARAM1);
         }
 
-        //Initialize Adds TODO:UPDATE ID IN STRING FILE AND HERE
-        MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+        //Initialize Adds
+        MobileAds.initialize(getActivity().getApplicationContext(), MainContainerActivity.ADMOBSAPPID);
     }
 
     @Override
@@ -63,6 +63,12 @@ public class CompanyDetailFragment extends Fragment {
         String toSet;
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_company_detail, container, false);
+
+
+        //For ads
+        AdView mAdView = (AdView)rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         TextView companyNameTextView = (TextView)rootView.findViewById(R.id.detailCompanyNameTextView);
         companyNameTextView.setText(companyToDisplay.get(CompanyDirectoryFragment.COMPANYNAME_KEY) +
@@ -167,10 +173,6 @@ public class CompanyDetailFragment extends Fragment {
             marketCapTextView.setText(toSet);
         }
 
-        //For ads
-        AdView mAdView = (AdView)rootView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
         return rootView;
     }

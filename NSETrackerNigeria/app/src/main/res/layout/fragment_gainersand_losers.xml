@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.GainersandLosersFragment">
+    tools:context="com.stockwatch.nosagie.nsetracker.GainersandLosersFragment">
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="15dp"
                 ads:adSize="BANNER"
-                ads:adUnitId="@string/banner_add_unit_id">
+                ads:adUnitId="@string/gainersandlosers_add_unit_id">
             </com.google.android.gms.ads.AdView>
 
 

@@ -3,9 +3,9 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="#D3D3D3"
 
-    tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.MarketSnapshotFragment">
+    tools:context="com.stockwatch.nosagie.nsetracker.MarketSnapshotFragment">
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -34,6 +34,33 @@
             android:layout_weight="10"
             android:orientation="horizontal"
             android:gravity="left"
+            style="@style/marketSnapshotItems">
+        >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/marketStatusTitle"
+                style="@style/marketSnapshotTitles"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/marketStatusTextView"
+                style="@style/marketSnapshotTexts"
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:orientation="horizontal"
+            style="@style/marketSnapshotItems"
+            android:gravity="left"
            >
 
             <TextView
@@ -54,11 +81,12 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:gravity="left"
             android:layout_weight="10"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            style="@style/marketSnapshotItems">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,8 +108,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:gravity="left"
-            android:orientation="horizontal">
-            <TextView
+            android:orientation="horizontal"
+            style="@style/marketSnapshotItems">
+
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tradeVolumeTitle"
@@ -100,10 +130,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:orientation="vertical"
-            >
+            style="@style/marketSnapshotItems">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:gravity="left"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -128,7 +159,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:orientation="horizontal"
-            android:gravity="left">
+            android:gravity="left"
+            style="@style/marketSnapshotItems">
+        >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -157,7 +190,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     ads:adSize="BANNER"
-                    ads:adUnitId="@string/banner_add_unit_id">
+                    ads:adUnitId="@string/marketsnapshot_add_unit_id">
                 </com.google.android.gms.ads.AdView>
         </LinearLayout>
 

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f2f2f2"
-    tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.CompanyDirectoryFragment">
+    tools:context="com.stockwatch.nosagie.nsetracker.CompanyDirectoryFragment">
 
 
         <ProgressBar

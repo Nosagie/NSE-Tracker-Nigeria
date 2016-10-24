@@ -1,4 +1,4 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 import android.net.Uri;
 import android.util.Log;
@@ -26,6 +26,7 @@ public class Fetcher {
     private static final String BOTTOMSYMBOLS_URL = "http://nse.com.ng/rest/api/mrkstat/bottomsymbols";
     private static final String MARKETSNAPSHOT_URL = "http://nse.com.ng/rest/api/mrkstat/mrksnapshot";
     private static final String COMPANYDIRECTORY_URL = "http://nse.com.ng/rest/api/issuers/companydirectory";
+    Market status URL = http://nse.com.ng/rest/api/statistics/mktstatus
  */
 
 
@@ -33,6 +34,23 @@ public class Fetcher {
     private static BufferedReader urlReader;
     private static String unparsedJSON=null;
 
+
+    public static String fetchMarketStatus(){
+        //Build Uri with queries
+        Uri builtUri = Uri.parse(NSE_BASE_URL)
+                .buildUpon()
+                .appendPath("statistics")
+                .appendPath("mktstatus")
+                .build();
+        try {
+            apiAddress = new URL(builtUri.toString());
+        }catch (MalformedURLException e){
+            //Exception already caught in getRawStringMethod()
+        }
+
+        return getRawString(apiAddress);
+
+    }
 
     public static String fetchMarketSnapshot(){
         //Build Uri with queries
@@ -142,6 +160,7 @@ public class Fetcher {
         return getRawString(apiAddress);
     }
 
+    //Returns UNParsed JSON String
     private static String getRawString(URL api_address){
         try{
             apiAddress = new URL(api_address.toString());

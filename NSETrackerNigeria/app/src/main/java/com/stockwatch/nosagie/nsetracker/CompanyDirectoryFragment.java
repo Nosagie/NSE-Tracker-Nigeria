@@ -1,4 +1,4 @@
-package com.nosagieapp.nsetracker.nsetrackernigeria;
+package com.stockwatch.nosagie.nsetracker;
 
 
 import android.content.Context;
@@ -194,10 +194,9 @@ public class CompanyDirectoryFragment extends Fragment {
                         annualLowPrice = companyToAddJSON.getString(ANNUALLOWPRICE_KEY);
                         annualLowPriceDateTime = companyToAddJSON.getString(ANNUALLOWPRICEDATETIME);
 
-                        //TODO:ADD HTML.FROMHTM().TOSTRING FOR STRING METHODS
                         //Add to HashMap and Arraylist
                         companyToAdd = new HashMap<>();
-                        companyToAdd.put(INTERNATIONALSECIN_KEY,internationalSECIN);
+                        companyToAdd.put(INTERNATIONALSECIN_KEY,Html.fromHtml(internationalSECIN).toString());
                         companyToAdd.put(SYMBOL_KEY,symbol);
                         companyToAdd.put(PREVCLOSE_KEY,prevClose);
                         companyToAdd.put(OPENPRICE_KEY,openPrice);
@@ -209,8 +208,8 @@ public class CompanyDirectoryFragment extends Fragment {
                         companyToAdd.put(SHARESOUTSTANDING_KEY,sharesOutstanding);
                         companyToAdd.put(DIVIDEND_KEY,dividend);
                         companyToAdd.put(YIELD_KEY,yield);
-                        companyToAdd.put(SECTOR_KEY,sector);
-                        companyToAdd.put(SUBSECTOR_KEY,subSector);
+                        companyToAdd.put(SECTOR_KEY,Html.fromHtml(sector).toString());
+                        companyToAdd.put(SUBSECTOR_KEY,Html.fromHtml(subSector).toString());
                         companyToAdd.put(COMPANYNAME_KEY,companyName);
                         companyToAdd.put(MARKETCLASSIFICATION_KEY,marketClassification);
                         companyToAdd.put(DATELISTED_KEY,dateListed);
@@ -220,16 +219,16 @@ public class CompanyDirectoryFragment extends Fragment {
                         companyToAdd.put(STOCKPRICECHANGE_KEY,stockPriceChange);
                         companyToAdd.put(STOCKPRICEPERCCHANGE_KEY,stockPricePercChange);
                         companyToAdd.put(STOCKPRICECURRENT_KEY,stockPriceCurrent);
-                        companyToAdd.put(COMPANYPROFILESUMM_KEY,companyProfileSumm);
-                        companyToAdd.put(NATUREOFBUSINESS_KEY,natureOfBusiness);
-                        companyToAdd.put(COMPANYADDRESS_KEY,companyAddress);
+                        companyToAdd.put(COMPANYPROFILESUMM_KEY,Html.fromHtml(companyProfileSumm).toString());
+                        companyToAdd.put(NATUREOFBUSINESS_KEY,Html.fromHtml(natureOfBusiness).toString());
+                        companyToAdd.put(COMPANYADDRESS_KEY,Html.fromHtml(companyAddress).toString());
                         companyToAdd.put(TELEPHONE_KEY,telephone);
                         companyToAdd.put(FAX_KEY,fax);
                         companyToAdd.put(EMAIL_KEY,email);
-                        companyToAdd.put(SECRETARY_KEY,secretary);
+                        companyToAdd.put(SECRETARY_KEY,Html.fromHtml(secretary).toString());
                         companyToAdd.put(AUDITOR_KEY,Html.fromHtml(auditor).toString());
                         companyToAdd.put(REGISTRAR_KEY, Html.fromHtml(registrar).toString());
-                        companyToAdd.put(BOARDOFDIRECTORS_KEY,boardOfDirectors);
+                        companyToAdd.put(BOARDOFDIRECTORS_KEY,Html.fromHtml(boardOfDirectors).toString());
                         companyToAdd.put(ID_KEY,id);
                         companyToAdd.put(ANNUALHIGHPRICE_KEY,annualHighPrice);
                         companyToAdd.put(ANNUALHIGHPRICEDATETIME_KEY,annualHighPriceDateTime);

@@ -5,12 +5,13 @@
     android:padding="4dp"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.nosagieapp.nsetracker.nsetrackernigeria.CompanyDetailFragment">
+    tools:context="com.stockwatch.nosagie.nsetracker.CompanyDetailFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="10">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -135,8 +136,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_weight="100">
+        android:layout_height="wrap_content"
+        android:layout_weight="90">
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="match_parent"
@@ -144,7 +146,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_add_unit_id">
+            ads:adUnitId="@string/companyDetail_add_unit_id">
         </com.google.android.gms.ads.AdView>
     </LinearLayout>
 

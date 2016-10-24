@@ -5,10 +5,10 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.nosagieapp.nsetracker.nsetrackernigeria"
+        applicationId "com.stockwatch.nosagie.nsetracker"
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 1
+        versionCode 7
         versionName "1.0"
     }
     buildTypes {
