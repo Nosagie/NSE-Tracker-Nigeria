@@ -30,8 +30,8 @@ public class MainContainerActivity extends AppCompatActivity {
     //Titles
     private static final String MARKETSNAPSHOTTITLE = "Market Snapshot";
     private static final String GAINERSLOSERSTITLE = "Gainers & Losers";
-    private static final String ALLEQUITIESTITLE = "All Equities";
-    private static final String COMPANYDIRECTORYTITLE = "Company Directory";
+    private static final String ALLEQUITIESTITLE = "Select Equity";
+    private static final String COMPANYDIRECTORYTITLE = "Select Company";
 
     public static final String ACTION_BAR_COLOR = "#003300";
 

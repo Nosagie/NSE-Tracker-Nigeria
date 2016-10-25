@@ -31,7 +31,7 @@
     </style>
 
     <style name="marketSnapshotItems">
-        <item name="android:background">#D3D3D3</item>
+        <item name="android:background">#fff</item>
         <item name="android:paddingLeft">3dp</item>
     </style>
 

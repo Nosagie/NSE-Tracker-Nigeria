@@ -205,9 +205,19 @@ public class AllEquitiesFragment extends Fragment {
 
             TextView marketTextView = (TextView)rowView.findViewById(R.id.allEquitiesMarketTextView);
             marketTextView.setText(values.get(position).get(MARKET_KEY));
-
-            TextView sectorTextView = (TextView)rowView.findViewById(R.id.allEquitiesSectorTextView);
-            sectorTextView.setText(values.get(position).get(SECTOR_KEY));
+            String toSet;
+            TextView priceTextView = (TextView)rowView.findViewById(R.id.allEquitiesSectorTextView);
+            //Set price
+            if(values.get(position).get(CLOSE_PRICE_KEY) != null && !values.get(position).get(CLOSE_PRICE_KEY).equals("null")) {
+                toSet = MainContainerActivity.CURRENCY + values.get(position).get(CLOSE_PRICE_KEY);
+                priceTextView.setText(toSet);
+            }else if(values.get(position).get(OPENING_PRICE_KEY) != null && !values.get(position).get(OPENING_PRICE_KEY).equals("null")){
+                toSet = MainContainerActivity.CURRENCY + values.get(position).get(OPENING_PRICE_KEY);
+                priceTextView.setText(toSet);
+            }else if (values.get(position).get(PREV_CLOSING_PRICE_KEY) != null && !values.get(position).get(PREV_CLOSING_PRICE_KEY).equals("nul")){
+                toSet = MainContainerActivity.CURRENCY + values.get(position).get(PREV_CLOSING_PRICE_KEY);
+                priceTextView.setText(toSet);
+            }
 
             //If position is even
             if(position % 2 == 0){
